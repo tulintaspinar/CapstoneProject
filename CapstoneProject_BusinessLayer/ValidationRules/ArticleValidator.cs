@@ -1,14 +1,9 @@
-﻿using CapstoneProject_EntityLayer.Concrete;
+﻿using CapstoneProject_DTOs.DTOs;
 using FluentValidation;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CapstoneProject_BusinessLayer.ValidationRules
 {
-    public class ArticleValidator : AbstractValidator<Article>
+    public class ArticleValidator : AbstractValidator<ArticleAddDTO>
     {
         public ArticleValidator()
         {
@@ -19,7 +14,7 @@ namespace CapstoneProject_BusinessLayer.ValidationRules
             RuleFor(x=>x.Description).NotEmpty().WithMessage("Makale açıklaması boş bırakılamaz!");
             RuleFor(x => x.Description).MinimumLength(50).WithMessage("Makale açıklaması en az 50 karakter olmalıdır!");
 
-            RuleFor(x => x.ArticleCategoryID).NotEmpty().WithMessage("Makale türü seçiniz!");
+            //RuleFor(x => x.ArticleCategoryID).NotEmpty().WithMessage("Makale türü seçiniz!");
         }
     }
 }

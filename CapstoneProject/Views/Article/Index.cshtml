@@ -1,0 +1,47 @@
+﻿@model List<Article>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    int count = 0;
+}
+
+<div class="container-xxl flex-grow-1 container-p-y">
+    <!-- Users List Table -->
+    <div class="card">
+        <div class="card-header border-bottom">
+            <h5 class="card-title mb-3">ARTICLES</h5>
+            <div class="d-flex justify-content-between align-items-center row pb-2 gap-3 gap-md-0">
+                <div class="col-md-4 user_role"></div>
+                <div class="col-md-4 user_plan"></div>
+                <div class="col-md-4 user_status"></div>
+            </div>
+        </div>
+        <a href="/Article/AddArticle" class="btn btn-outline-primary offcanvas-title">Add New Article</a>
+        <div class="card-datatable table-responsive">
+            <table class="datatables-users table border-top">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Title</th>
+                        <th>Date</th>
+                        <th>Update</th>
+                        <th>Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        count++;
+                        <tr>
+                            <td>@count</td>
+                            <td>@item.Title</td>
+                            <td>@item.Date.ToShortDateString()</td>
+                            <td><a href="" class="btn btn-outline-info">Update</a></td>
+                            <td><a href="" class="btn btn-outline-danger">Delete</a></td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

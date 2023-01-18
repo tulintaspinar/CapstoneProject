@@ -71,38 +71,38 @@
                     </div>
                     <h3 class="mb-1 fw-bold">Adventure starts here! 👋</h3>
                     <p class="mb-4">Make your app management easy and fun!</p>
-                    <form class="mb-3" method="POST">
+                    <form class="mb-3" method="post">
                         <div class="mb-3">
                             <label class="form-label">Name</label>
-                            <input asp-for="Name" type="text" class="form-control" placeholder="Enter your name" autofocus="">
+                            <input asp-for="Name" type="text" class="form-control" placeholder="Enter your name">
+                            <span class="text-danger" asp-validation-for="Name"></span>
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Surname</label>
-                            <input asp-for="Surname" type="text" class="form-control" placeholder="Enter your surname" autofocus="">
+                            <input asp-for="Surname" type="text" class="form-control" placeholder="Enter your surname">
+                            <span class="text-danger" asp-validation-for="Surname"></span>
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Age</label>
-                            <input asp-for="Age" type="text" class="form-control" placeholder="Enter your age" autofocus="">
+                            <input asp-for="Age" type="text" class="form-control" placeholder="Enter your age">
+                            <span class="text-danger" asp-validation-for="Age"></span>
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Email</label>
-                            <input asp-for="Email" type="text" class="form-control" placeholder="Enter your email" autofocus="">
+                            <input asp-for="Email" type="text" class="form-control" placeholder="Enter your email">
+                            <span class="text-danger" asp-validation-for="Email"></span>
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Username</label>
-                            <input asp-for="UserName" type="text" class="form-control" placeholder="Enter your email or username" autofocus="">
+                            <input asp-for="UserName" type="text" class="form-control" placeholder="Enter your username">
+                            <span class="text-danger" asp-validation-for="UserName"></span>
                         </div>
-                        <div class="mb-3 form-password-toggle">
-                            <div class="d-flex justify-content-between">
+                        <div class="mb-3">
                                 <label class="form-label" for="password">Password</label>
-                                <a href="Register/ForgotPassword">
-                                    <small>Forgot Password?</small>
-                                </a>
-                            </div>
-                            <div class="input-group input-group-merge">
-                                <input asp-for="PasswordHash" type="password" class="form-control" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" aria-describedby="password">
+                                <input asp-for="Password" type="password" class="form-control" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" aria-describedby="password">
+                                <span class="text-danger" asp-validation-for="Password"></span>
                                 @*<span class="input-group-text cursor-pointer"><i class="ti ti-eye-off"></i></span>*@
-                            </div>
+                           
                         </div>
                         <div class="mb-3">
                         </div>

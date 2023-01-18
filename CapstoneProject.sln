@@ -11,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CapstoneProject_EntityLayer
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CapstoneProject", "CapstoneProject\CapstoneProject.csproj", "{1FA32984-BC70-4E4B-B899-3BAB00DC0C6D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CapstoneProject_DTOs", "CapstoneProject_DTOs\CapstoneProject_DTOs.csproj", "{FCD02E1C-8249-490C-9D7A-C813331222FC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CapstoneProject_DTOs", "CapstoneProject_DTOs\CapstoneProject_DTOs.csproj", "{FCD02E1C-8249-490C-9D7A-C813331222FC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

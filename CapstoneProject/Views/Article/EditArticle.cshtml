@@ -1,0 +1,43 @@
+﻿@model ArticleEditDTO
+@{
+    ViewData["Title"] = "EditArticle";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-xxl flex-grow-1 container-p-y">
+    <div class="col-xl-12">
+        <form method="post">
+            <!-- HTML5 Inputs -->
+            <div class="card mb-4">
+                <h5 class="card-header">HTML5 Inputs</h5>
+                <div class="card-body">
+                    <div class="mb-3 row">
+                        <label for="html5-text-input" class="col-md-2 col-form-label">Title</label>
+                        <div class="col-md-10">
+                            <input asp-for="Title" class="form-control" type="text" value="Title" id="html5-text-input">
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label for="html5-search-input" class="col-md-2 col-form-label">Description</label>
+                        <div class="col-md-10">
+                            <textarea asp-for="Description" class="form-control" rows="10" cols="6" value="Description"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- File input -->
+            <div class="card">
+                <h5 class="card-header">File</h5>
+                <div class="card-body">
+                    <div class="mb-3">
+                        <label for="formFile" class="form-label">Please choose file</label>
+                        <input asp-for="ImageUrl" class="form-control" type="file" id="formFile">
+                    </div>
+                </div>
+            </div>
+
+            <button type="submit">ADD NEW ARTİCLE</button>
+        </form>
+    </div>
+</div>

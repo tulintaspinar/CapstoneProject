@@ -1,3 +1,12 @@
+using CapstoneProject_BusinessLayer.Abstract;
+using CapstoneProject_BusinessLayer.Concrete;
+using CapstoneProject_BusinessLayer.DIContainer;
+using CapstoneProject_BusinessLayer.ValidationRules;
+using CapstoneProject_DataAccessLayer.Abstract;
+using CapstoneProject_DataAccessLayer.Concrete;
+using CapstoneProject_DataAccessLayer.EnitityFramework;
+using CapstoneProject_DTOs.DTOs;
+using CapstoneProject_EntityLayer.Concrete;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -23,6 +32,9 @@ namespace CapstoneProject
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.ContainerDependencies();
+            services.AddDbContext<Context>();
+            services.AddIdentity<AppUser, AppRole>().AddErrorDescriber<CustomeIdentityValidator>().AddEntityFrameworkStores<Context>();
             services.AddControllersWithViews();
         }
 
@@ -50,7 +62,7 @@ namespace CapstoneProject
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Login}/{action=Index}/{id?}");
             });
         }
     }

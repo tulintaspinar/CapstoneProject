@@ -20,6 +20,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\CapstoneProject_DataAccessLayer\CapstoneProject_DataAccessLayer.csproj" />
+    <ProjectReference Include="..\CapstoneProject_DTOs\CapstoneProject_DTOs.csproj" />
     <ProjectReference Include="..\CapstoneProject_EntityLayer\CapstoneProject_EntityLayer.csproj" />
   </ItemGroup>
 

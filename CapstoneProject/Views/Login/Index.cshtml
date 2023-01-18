@@ -1,4 +1,4 @@
-﻿
+﻿@model AppUser 
 @{
     Layout = null;
 }
@@ -67,10 +67,10 @@
                     </div>
                     <h3 class="mb-1 fw-bold">Welcome! 👋</h3>
                     <p class="mb-4">Please sign-in to your account and start the adventure</p>
-                    <form id="formAuthentication" class="mb-3" method="POST">
+                    <form class="mb-3" method="POST">
                         <div class="mb-3">
                             <label class="form-label">Username</label>
-                            <input type="text" class="form-control" placeholder="Enter your email or username" autofocus="">
+                            <input asp-for="UserName" type="text" class="form-control" placeholder="Enter your email or username" autofocus="">
                         </div>
                         <div class="mb-3 form-password-toggle">
                             <div class="d-flex justify-content-between">
@@ -80,7 +80,7 @@
                                 </a>
                             </div>
                             <div class="input-group input-group-merge">
-                                <input type="password" class="form-control" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" aria-describedby="password">
+                                <input asp-for="PasswordHash" type="password" class="form-control" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;">
                                 @*<span class="input-group-text cursor-pointer"><i class="ti ti-eye-off"></i></span>*@
                             </div>
                         </div>
