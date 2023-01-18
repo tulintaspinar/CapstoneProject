@@ -1,6 +1,6 @@
-﻿@model ArticleCategoriesAddDTO
+﻿@model ArticleCategory
 @{
-    ViewData["Title"] = "Add";
+    ViewData["Title"] = "Update";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -19,10 +19,10 @@
                         </div>
                     </div>
                     <div class="mb-3 row">
-                       <div class="btn-group">
+                        <div class="btn-group">
                             <label for="html5-text-input" class="col-md-2 col-form-label">Types Of Writing</label>
-                            <select id="drpEmpList" class="form-control" asp-for="TypesOfWritingName" asp-items="(new SelectList(ViewBag.typesOfWriting))">
-                                <option value="">--Select--</option>
+                            <select id="drpEmpList" class="form-control" asp-for="TypesOfWritingID" asp-items="(new SelectList(ViewBag.typesOfWritingAll))">
+                                <option value=""> --Choose--</option>
                             </select>
                         </div>
                     </div>
@@ -35,3 +35,5 @@
         </form>
     </div>
 </div>
+
+

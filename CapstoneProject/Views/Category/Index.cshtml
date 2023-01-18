@@ -8,21 +8,23 @@
     <!-- Users List Table -->
     <div class="card">
         <div class="card-header border-bottom">
-            <h5 class="card-title mb-3">TYPES OF WRITING</h5>
+            <h5 class="card-title mb-3">CATEGORIES</h5>
             <div class="d-flex justify-content-between align-items-center row pb-2 gap-3 gap-md-0">
                 <div class="col-md-4 user_role"></div>
                 <div class="col-md-4 user_plan"></div>
                 <div class="col-md-4 user_status"></div>
             </div>
         </div>
-        <a href="/Category/Add" class="btn btn-outline-primary offcanvas-title">Add New Types Of Writing</a>
+        <a href="/Category/Add" class="btn btn-outline-primary offcanvas-title">Add New Categories</a>
         <div class="card-datatable table-responsive">
             <table class="datatables-users table border-top">
                 <thead>
                     <tr>
                         <th>#</th>
                         <th>NAME</th>
-                        <th>Delete</th>
+                        <th>CATEGORIES</th>
+                        <th>DELETE</th>
+                        <th>UPDATE</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -32,7 +34,9 @@
                         <tr>
                             <td>@count</td>
                             <td>@item.CategoryName</td>
+                            <td>@item.TypesOfWriting.Name</td>
                             <td><a href="/Category/Delete/@item.ArticleCategoryID" class="btn btn-outline-danger">Delete</a></td>
+                            <td><a href="/Category/Update/@item.ArticleCategoryID" class="btn btn-outline-info">Update</a></td>
                         </tr>
                     }
                 </tbody>

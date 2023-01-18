@@ -3,6 +3,7 @@ using CapstoneProject_DTOs.DTOs;
 using CapstoneProject_EntityLayer.Concrete;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace CapstoneProject.Controllers
 {
@@ -19,7 +20,7 @@ namespace CapstoneProject.Controllers
 
         public IActionResult Index()
         {
-            return View(_articleCategoryService.TGetList());
+            return View(_articleCategoryService.TGetArticleCategoryByType());
         }
         [HttpGet]
         public IActionResult Add()
@@ -38,10 +39,11 @@ namespace CapstoneProject.Controllers
         {
             if(ModelState.IsValid)
             {
+                var typesOfWritingId = _typesOfWritingService.TGetList().Where(x=>x.Name==articleCategories.TypesOfWritingName).FirstOrDefault().TypesOfWritingID;
                 _articleCategoryService.TAdd(new ArticleCategory()
                 {
-                    CategoryName=articleCategories.CategoryName,
-                    TypesOfWritingID=articleCategories.TypesOfWritingID
+                    CategoryName = articleCategories.CategoryName,
+                    TypesOfWritingID = typesOfWritingId
                 });
                 return RedirectToAction("Index");
             }
@@ -50,6 +52,28 @@ namespace CapstoneProject.Controllers
         public IActionResult Delete(int id)
         {
             _articleCategoryService.TDelete(_articleCategoryService.TGetById(id));
+            return RedirectToAction("Index");
+        }
+
+        [HttpGet]
+        public IActionResult Update(int id)
+        {
+            var list = _articleCategoryService.TGetById(id);
+            ViewBag.typesOfWriting = _typesOfWritingService.TGetById(list.TypesOfWritingID).Name; //seçili olanı yazdırmak için
+            
+            List<string> typesOfWriting = new List<string>();
+            foreach (var item in _typesOfWritingService.TGetList())
+            {
+                typesOfWriting.Add(item.Name);
+            }
+            ViewBag.typesOfWritingAll = typesOfWriting;//dropdownlist için
+
+            return View(list);
+        }
+        [HttpPost]
+        public IActionResult Update(ArticleCategory article)
+        {
+
             return RedirectToAction("Index");
         }
     }

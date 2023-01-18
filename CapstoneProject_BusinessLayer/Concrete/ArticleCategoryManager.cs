@@ -18,6 +18,11 @@ namespace CapstoneProject_BusinessLayer.Concrete
             _articleCategoryDal = articleCategoryDal;
         }
 
+        public List<ArticleCategory> TGetArticleCategoryByType()
+        {
+            return _articleCategoryDal.GetArticleCategoryByType();
+        }
+
         public void TAdd(ArticleCategory t)
         {
             _articleCategoryDal.Insert(t);
