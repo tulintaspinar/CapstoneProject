@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using CapstoneProject_EntityLayer.Concrete;
+using Microsoft.AspNetCore.Mvc;
 
 namespace CapstoneProject.Controllers
 {
@@ -10,7 +11,7 @@ namespace CapstoneProject.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult Index(int a)
+        public IActionResult Index(AppUser appuser)
         {
             return RedirectToAction("EmailConfirm");
         }
