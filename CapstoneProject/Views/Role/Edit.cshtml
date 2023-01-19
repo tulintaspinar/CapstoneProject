@@ -1,0 +1,30 @@
+﻿@model RoleEditDTO
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="container-xxl flex-grow-1 container-p-y">
+    <div class="col-md-12">
+        <div class="card mb-12">
+            <h5 class="card-header">ADD ROLE</h5>
+            <div class="card-body demo-vertical-spacing demo-only-element">
+                <form method="post">
+                    <input type="hidden" asp-for="ID" />
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">Name</span>
+                        <input type="text" asp-for="Name" class="form-control" placeholder="Role name">
+                    </div>
+                    <br />
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">Description</span>
+                        <textarea class="form-control" asp-for="Description" placeholder="Role description"></textarea>
+                    </div>
+
+                    <div class="input-group">
+                        <button type="submit" class="btn btn-outline-info"> ADD </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

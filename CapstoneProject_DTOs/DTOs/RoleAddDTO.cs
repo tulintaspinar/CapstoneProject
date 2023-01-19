@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace CapstoneProject_DTOs.DTOs
 {
-    public class ArticleCategoriesAddDTO
+    public class RoleAddDTO
     {
-        public string CategoryName { get; set; }
-        public string TypesOfWritingName { get; set; }
+        public string Name { get; set; }
+        public string Description { get; set; }
     }
 }

@@ -9,5 +9,6 @@ namespace CapstoneProject_EntityLayer.Concrete
 {
     public class AppRole:IdentityRole<int>
     {
+        public string RoleDescription { get; set; }
     }
 }

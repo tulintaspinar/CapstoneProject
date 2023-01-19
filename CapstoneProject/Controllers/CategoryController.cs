@@ -35,7 +35,7 @@ namespace CapstoneProject.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult Add(ArticleCategoriesAddDTO articleCategories)
+        public IActionResult Add(ArticleCategoryAddDTO articleCategories)
         {
             if(ModelState.IsValid)
             {
@@ -59,21 +59,38 @@ namespace CapstoneProject.Controllers
         public IActionResult Update(int id)
         {
             var list = _articleCategoryService.TGetById(id);
-            ViewBag.typesOfWriting = _typesOfWritingService.TGetById(list.TypesOfWritingID).Name; //seçili olanı yazdırmak için
-            
+            var typesOfWritingId = _typesOfWritingService.TGetList().Where(x => x.TypesOfWritingID == list.TypesOfWritingID).FirstOrDefault().Name;
+            ArticleCategoryEditDTO article = new ArticleCategoryEditDTO()
+            {
+                ID = list.TypesOfWritingID,
+                CategoryName = list.CategoryName,
+                TypesOfWritingName= typesOfWritingId
+                
+            };
+            //dropdownlist için
             List<string> typesOfWriting = new List<string>();
             foreach (var item in _typesOfWritingService.TGetList())
             {
                 typesOfWriting.Add(item.Name);
             }
-            ViewBag.typesOfWritingAll = typesOfWriting;//dropdownlist için
+            ViewBag.typesOfWritingAll = typesOfWriting;
 
-            return View(list);
+            return View(article);
         }
         [HttpPost]
-        public IActionResult Update(ArticleCategory article)
+        public IActionResult Update(ArticleCategoryEditDTO article)
         {
-
+            if (ModelState.IsValid)
+            {
+                var typesOfWritingId = _typesOfWritingService.TGetList().Where(x => x.Name == article.TypesOfWritingName).FirstOrDefault().TypesOfWritingID;
+                _articleCategoryService.TUpdate(new ArticleCategory()
+                {
+                    ArticleCategoryID=article.ID,
+                    CategoryName = article.CategoryName,
+                    TypesOfWritingID = typesOfWritingId
+                });
+                return RedirectToAction("Index");
+            }
             return RedirectToAction("Index");
         }
     }

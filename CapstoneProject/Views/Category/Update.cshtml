@@ -1,4 +1,4 @@
-﻿@model ArticleCategory
+﻿@model ArticleCategoryEditDTO
 @{
     ViewData["Title"] = "Update";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -11,23 +11,24 @@
             <div class="card mb-4">
                 <h5 class="card-header">TYPES OF WRITING</h5>
                 <div class="card-body">
+                    <input type="hidden" asp-for="ID" />
                     <div class="mb-3 row">
                         <label for="html5-text-input" class="col-md-2 col-form-label">Category Name</label>
                         <div class="col-md-10">
-                            <input asp-for="CategoryName" class="form-control" type="text" placeholder="Technology">
+                            <input asp-for="CategoryName" class="form-control" type="text">
                             <span class="text-danger" asp-validation-for="CategoryName"></span>
                         </div>
                     </div>
                     <div class="mb-3 row">
                         <div class="btn-group">
                             <label for="html5-text-input" class="col-md-2 col-form-label">Types Of Writing</label>
-                            <select id="drpEmpList" class="form-control" asp-for="TypesOfWritingID" asp-items="(new SelectList(ViewBag.typesOfWritingAll))">
-                                <option value=""> --Choose--</option>
+                            <select id="drpEmpList" class="form-control" asp-for="TypesOfWritingName" asp-items="(new SelectList(ViewBag.typesOfWritingAll))">
+                                <option value="">@* --Choose--*@</option>
                             </select>
                         </div>
                     </div>
                     <div class="mb-3 row">
-                        <button type="submit" class="btn btn-outline-info">ADD</button>
+                        <button type="submit" class="btn btn-outline-info">UPDATE</button>
                     </div>
                 </div>
             </div>

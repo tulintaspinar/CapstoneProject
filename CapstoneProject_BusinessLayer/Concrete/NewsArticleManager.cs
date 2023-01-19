@@ -18,6 +18,11 @@ namespace CapstoneProject_BusinessLayer.Concrete
             _newsArticleDal = newsArticleDal;
         }
 
+        public List<NewsArticle> GetNewsArticleByCategory()
+        {
+            return _newsArticleDal.GetNewsArticleByCategory();
+        }
+
         public void TAdd(NewsArticle t)
         {
             _newsArticleDal.Insert(t);
