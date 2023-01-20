@@ -6,15 +6,14 @@
 
 <div class="container-xxl flex-grow-1 container-p-y">
     <div class="col-xl-12">
-        <form method="post">
-            <!-- HTML5 Inputs -->
+        <form method="post" enctype="multipart/form-data">
             <div class="card mb-4">
-                <h5 class="card-header">HTML5 Inputs</h5>
+                <h5 class="card-header">ADD ARTICLE</h5>
                 <div class="card-body">
                     <div class="mb-3 row">
                         <label for="html5-text-input" class="col-md-2 col-form-label">Title</label>
                         <div class="col-md-10">
-                            <input asp-for="Title" class="form-control" type="text" value="Vuexy">
+                            <input asp-for="Title" class="form-control" type="text" placeholder="Vuexy">
                             <span class="text-danger" asp-validation-for="Title"></span>
                         </div>
                     </div>
@@ -26,11 +25,19 @@
                         </div>
                     </div>
                     <div class="mb-3 row">
+                        <label class="col-md-2 col-form-label" for="basic-default-category">Category</label>
+                        <div class="col-md-10">
+                            <select class="form-select" id="basic-default-category" required="" asp-for="ArticleCategoryName" asp-items="new SelectList((ViewBag.categories))">
+                                <option value="">---Select---</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
                         <h5 class="card-header">File</h5>
                         <div class="card-body">
                             <div class="mb-3">
                                 <label for="formFile" class="form-label">Please choose file</label>
-                                <input asp-for="ImageUrl" class="form-control" type="file" id="formFile">
+                                <input asp-for="Image" class="form-control" type="file" id="formFile">
                             </div>
                         </div>
                     </div>

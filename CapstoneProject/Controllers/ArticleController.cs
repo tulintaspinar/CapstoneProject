@@ -3,16 +3,23 @@ using CapstoneProject_DTOs.DTOs;
 using CapstoneProject_EntityLayer.Concrete;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 
 namespace CapstoneProject.Controllers
 {
     public class ArticleController : Controller
     {
         private readonly IArticleService _articleService;
+        private readonly ITypesOfWritingService _typesOfWritingService;
+        private readonly IArticleCategoryService _articleCategoryService;
 
-        public ArticleController(IArticleService articleService)
+        public ArticleController(IArticleService articleService, ITypesOfWritingService typesOfWritingService, IArticleCategoryService articleCategoryService)
         {
             _articleService = articleService;
+            _typesOfWritingService = typesOfWritingService;
+            _articleCategoryService = articleCategoryService;
         }
 
         public IActionResult Index()
@@ -23,6 +30,15 @@ namespace CapstoneProject.Controllers
         [HttpGet]
         public IActionResult AddArticle()
         {
+            var id = _typesOfWritingService.TGetList().Where(x => x.Name == "Article").First().TypesOfWritingID; //article id'si alındı
+            var newsArticleCategories = _articleCategoryService.TGetList().Where(x => x.TypesOfWritingID == id); //article'ye ait kategoriler listelenir.
+            List<string> categories = new List<string>();
+            foreach (var item in newsArticleCategories)
+            {
+                if (!categories.Equals(item.CategoryName))
+                    categories.Add(item.CategoryName);
+            }
+            ViewBag.categories = categories;
             return View();
         }
         [HttpPost]
@@ -30,14 +46,27 @@ namespace CapstoneProject.Controllers
         {
             if (ModelState.IsValid)
             {
+                var typesOfWritingId = _typesOfWritingService.TGetList().Where(x => x.Name == "Article").First().TypesOfWritingID;
+                var categoryID = _articleCategoryService.TGetList().Where(x => x.CategoryName == article.ArticleCategoryName && x.TypesOfWritingID == typesOfWritingId).First().ArticleCategoryID;
+
+                if (article.Image != null)
+                {
+                    var extension = Path.GetExtension(article.Image.FileName);
+                    var newImageName = Guid.NewGuid() + extension;
+                    var location = Path.Combine(Directory.GetCurrentDirectory()+"/wwwroot/IMAGES/ArticleImages/",newImageName);
+                    var stream = new FileStream(location, FileMode.Create);
+                    article.Image.CopyTo(stream);
+                    article.ImageUrl = newImageName;
+                }
+
                 _articleService.TAdd(new Article()
                 {
                     Date = DateTime.Now,
                     Title = article.Title,
                     Description = article.Description,
-                    WriterName = User.Identity.Name
-                    //ImageUrl=article.ImageUrl,
-                    //ArticleCategoryID=article.ArticleCategoryID
+                    WriterName = User.Identity.Name,
+                    ImageUrl=article.ImageUrl,
+                    ArticleCategoryID=categoryID
                 });
                 return RedirectToAction("Index");
             }

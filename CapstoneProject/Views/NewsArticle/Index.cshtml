@@ -28,11 +28,11 @@
                         count++;
                         <tr class="table-active">
                             <td>@count</td>
-                            <td><i class="ti ti-brand-react-native ti-lg text-info me-3"></i> <strong>@item.Title</strong></td>
+                            <td><strong>@item.Title</strong></td>
                             <td>@item.Date.ToShortDateString()</td>
                             <td><span class="badge bg-label-success me-1">@item.ArticleCategory.CategoryName</span></td>
-                            <td><a href="/NewsArticle/Edit" class="btn btn-outline-primary">Update</a></td>
-                            <td><a href="/NewsArticle/Delete" class="btn btn-outline-primary">Delete</a></td>
+                            <td><a href="/NewsArticle/Edit/@item.NewsArticleID" class="btn btn-outline-primary">Update</a></td>
+                            <td><a href="/NewsArticle/Delete/@item.NewsArticleID" class="btn btn-outline-primary">Delete</a></td>
                         </tr>
                     }
                     

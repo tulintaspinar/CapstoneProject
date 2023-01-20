@@ -4,6 +4,7 @@ using CapstoneProject_EntityLayer.Concrete;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 
 namespace CapstoneProject.Controllers
@@ -44,14 +45,27 @@ namespace CapstoneProject.Controllers
         {
             if (ModelState.IsValid)
             {
+                var typesOfWritingId = _typesOfWritingService.TGetList().Where(x => x.Name == "News Article").First().TypesOfWritingID;
+                var categoryID = _articleCategoryService.TGetList().Where(x => x.CategoryName == newsArticle.ArticleCategoryName && x.TypesOfWritingID == typesOfWritingId).First().ArticleCategoryID;
+
+                if (newsArticle.Image != null)
+                {
+                    var extension = Path.GetExtension(newsArticle.Image.FileName);
+                    var newImageName = Guid.NewGuid() + extension;
+                    var location = Path.Combine(Directory.GetCurrentDirectory() + "/wwwroot/IMAGES/NewsArticleImages/", newImageName);
+                    var stream = new FileStream(location, FileMode.Create);
+                    newsArticle.Image.CopyTo(stream);
+                    newsArticle.ImageUrl = newImageName;
+                }
+
                 _newsArticleService.TAdd(new NewsArticle()
                 {
                     Title=newsArticle.Title,
                     Description=newsArticle.Description,
-                    Date=DateTime.Now
-                    //WriterName=User.Identity.Name,
-                    //ImageUrl=newsArticle.ImageUrl,
-                    //ArticleCategoryID = newsArticle.ArticleCategoryID
+                    Date=DateTime.Now,
+                    WriterName=User.Identity.Name,
+                    ImageUrl=newsArticle.ImageUrl,
+                    ArticleCategoryID = categoryID
                 });
                 return RedirectToAction("Index");
             }
@@ -75,21 +89,35 @@ namespace CapstoneProject.Controllers
                     categories.Add(item.CategoryName);
             }
             ViewBag.categories = categories;
-
-            return View(_newsArticleService.TGetById(id));
+            var newsArticle = _newsArticleService.TGetById(id);
+            return View(newsArticle);
         }
         [HttpPost]
         public IActionResult Edit(NewsArticleEditDTO newsArticle)
         {
             if (ModelState.IsValid)
             {
+                var typesOfWritingId = _typesOfWritingService.TGetList().Where(x => x.Name == "News Article").First().TypesOfWritingID;
+                var categoryID = _articleCategoryService.TGetList().Where(x => x.CategoryName == newsArticle.ArticleCategoryName && x.TypesOfWritingID == typesOfWritingId).First().ArticleCategoryID;
+
+
+                if (newsArticle.Image != null)
+                {
+                    var extension = Path.GetExtension(newsArticle.Image.FileName);
+                    var newImageName = Guid.NewGuid() + extension;
+                    var location = Path.Combine(Directory.GetCurrentDirectory() + "/wwwroot/IMAGES/NewsArticleImages/", newImageName);
+                    var stream = new FileStream(location, FileMode.Create);
+                    newsArticle.Image.CopyTo(stream);
+                    newsArticle.ImageUrl = newImageName;
+                }
+
                 _newsArticleService.TUpdate(new NewsArticle()
                 {
                     NewsArticleID = newsArticle.ID,
                     Title = newsArticle.Title,
-                    Description = newsArticle.Description
-                    //ImageUrl = newsArticle.ImageUrl,
-                    //ArticleCategoryID = newsArticle.ArticleCategoryID
+                    Description = newsArticle.Description,
+                    ImageUrl = newsArticle.ImageUrl,
+                    ArticleCategoryID = categoryID
                 });
                 return RedirectToAction("Index");
             }

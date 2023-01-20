@@ -7,9 +7,11 @@ using CapstoneProject_DataAccessLayer.Concrete;
 using CapstoneProject_DataAccessLayer.EnitityFramework;
 using CapstoneProject_DTOs.DTOs;
 using CapstoneProject_EntityLayer.Concrete;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -36,6 +38,22 @@ namespace CapstoneProject
             services.AddDbContext<Context>();
             services.AddIdentity<AppUser, AppRole>().AddErrorDescriber<CustomeIdentityValidator>().AddEntityFrameworkStores<Context>();
             services.AddControllersWithViews();
+
+            services.AddMvc(config =>
+            {
+                var policy = new AuthorizationPolicyBuilder().
+                             RequireAuthenticatedUser().
+                             Build();
+                config.Filters.Add(new AuthorizeFilter(policy));//kullanýcý giriþ yapmasýný saðladýk.
+                                                                //Aksi ahlde hiçbir sayfaya eriþemez
+            });
+            services.ConfigureApplicationCookie(options =>
+            {
+                options.Cookie.HttpOnly = true;
+                options.ExpireTimeSpan = TimeSpan.FromMinutes(20);
+                options.AccessDeniedPath = "/ErrorPage/Index";
+                options.LoginPath = "/Login/Index"; //Giriþ ekranýna yönlendirir.
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -53,6 +71,8 @@ namespace CapstoneProject
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+
+            app.UseAuthentication();
 
             app.UseRouting();
 
