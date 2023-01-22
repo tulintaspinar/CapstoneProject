@@ -5,16 +5,24 @@ using Microsoft.AspNetCore.Mvc;
 using System.IO;
 using System;
 using System.Threading.Tasks;
+using CapstoneProject_BusinessLayer.Abstract;
+using System.Linq;
+using System.Collections.Generic;
 
 namespace CapstoneProject.Controllers
 {
     public class SettingsController : Controller
     {
+        private readonly IArticleService _articleService;
         private readonly UserManager<AppUser> _userManager;
-
-        public SettingsController(UserManager<AppUser> userManager)
+        private readonly INewsArticleService _newsArticleService;
+        private readonly IUserActivityTimelineService _userActivityTimelineService;
+        public SettingsController(UserManager<AppUser> userManager, IArticleService articleService, INewsArticleService newsArticleService, IUserActivityTimelineService userActivityTimelineService)
         {
             _userManager = userManager;
+            _articleService = articleService;
+            _newsArticleService = newsArticleService;
+            _userActivityTimelineService = userActivityTimelineService;
         }
 
         [HttpGet]
@@ -26,6 +34,16 @@ namespace CapstoneProject.Controllers
             ViewBag.Job = user.Job;
             ViewBag.JoinDate = user.JoinDate.ToShortDateString();
 
+            var articles = _articleService.GetByUserName(user.UserName);
+            var newsArticles = _newsArticleService.GetByUserName(user.UserName);
+
+            ViewBag.ArticleCount = articles.Count;
+            ViewBag.NewsArticleCount = newsArticles.Count;
+            ViewBag.TotalCount = articles.Count + newsArticles.Count;
+
+            ViewBag.ActivityTimeline = _userActivityTimelineService.GetAllByUserName(user.UserName).OrderByDescending(x=>x.Date);
+
+            
             return View(new UserDTO() 
             { 
                 Name=user.Name,Surname=user.Surname,Email=user.Email,UserName=user.UserName,Phone=user.PhoneNumber,Age=user.Age,Job=user.Job

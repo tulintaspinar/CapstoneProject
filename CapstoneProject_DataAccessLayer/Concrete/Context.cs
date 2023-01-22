@@ -20,6 +20,6 @@ namespace CapstoneProject_DataAccessLayer.Concrete
         public DbSet<NewsArticle> NewsArticles { get; set; }
         public DbSet<TypesOfWriting> TypesOfWritings { get; set; }
         public DbSet<Notification> Notifications { get; set; }
-        //public DbSet<Forum> Forums { get; set; }
+        public DbSet<UserActivityTimeline> UserActivityTimelines { get; set; }
     }
 }

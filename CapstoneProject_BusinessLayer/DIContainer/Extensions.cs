@@ -29,6 +29,9 @@ namespace CapstoneProject_BusinessLayer.DIContainer
 
             services.AddScoped<INotificationDal, EfNotificationDal>();
             services.AddScoped<INotificationService, NotificationManager>();
+
+            services.AddScoped<IUserActivityTimelineDal, EfUserActivityTimelineDal>();
+            services.AddScoped<IUserActivityTimelineService,UserActivityTimelineManager>();
         }
     }
 

@@ -1,4 +1,4 @@
-﻿
+﻿@model AppUser
 @{
     Layout = null;
 }
@@ -91,12 +91,16 @@
                     </div>
                     <h3 class="mb-1 fw-bold">Email Confirm? 🔒</h3>
                     <p class="mb-4">Writes the incoming code to the email address</p>
-                    <form class="mb-3" method="POST">
+                    <form class="mb-3" method="post">
                         <div class="mb-3">
-                            <label for="code" class="form-label">Code</label>
-                            <input type="text" class="form-control" id="code" placeholder="Enter your code" autofocus="">
+                            <label class="form-label">Email</label>
+                            <input type="text" class="form-control" asp-for="Email" placeholder="Enter your email" autofocus="">
                         </div>
-                        <button class="btn btn-primary d-grid w-100">Confirm</button>
+                        <div class="mb-3">
+                            <label class="form-label">Code</label>
+                            <input type="text" class="form-control" asp-for="EmailConfirmedCode" placeholder="Enter your code" autofocus="">
+                        </div>
+                        <button type="submit" class="btn btn-primary d-grid w-100">Confirm</button>
                     </form>
                 </div>
             </div>

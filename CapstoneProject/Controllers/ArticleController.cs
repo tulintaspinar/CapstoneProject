@@ -14,17 +14,19 @@ namespace CapstoneProject.Controllers
         private readonly IArticleService _articleService;
         private readonly ITypesOfWritingService _typesOfWritingService;
         private readonly IArticleCategoryService _articleCategoryService;
+        private readonly IUserActivityTimelineService _userActivityTimelineService;
 
-        public ArticleController(IArticleService articleService, ITypesOfWritingService typesOfWritingService, IArticleCategoryService articleCategoryService)
+        public ArticleController(IArticleService articleService, ITypesOfWritingService typesOfWritingService, IArticleCategoryService articleCategoryService, IUserActivityTimelineService userActivityTimelineService)
         {
             _articleService = articleService;
             _typesOfWritingService = typesOfWritingService;
             _articleCategoryService = articleCategoryService;
+            _userActivityTimelineService = userActivityTimelineService;
         }
 
         public IActionResult Index()
         {
-            return View(_articleService.TGetList());
+            return View(_articleService.GetArticleByCategory());
         }
 
         [HttpGet]
@@ -67,6 +69,11 @@ namespace CapstoneProject.Controllers
                     WriterName = User.Identity.Name,
                     ImageUrl=article.ImageUrl,
                     ArticleCategoryID=categoryID
+                });
+                _userActivityTimelineService.Add(new UserActivityTimeline()
+                {
+                    TypeOfWritingName="Article Added",
+                    Date= DateTime.Now
                 });
                 return RedirectToAction("Index");
             }

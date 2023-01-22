@@ -9,12 +9,9 @@
         <span class="text-muted fw-light">Notifications /</span> All Notification
     </h4>
     <div class="card">
-
-      <div class="card-datatable table-responsive pt-0">
-          <br />
-          <a href="/Notification/AddNotification" class="btn btn-outline-primary">Add New Notification</a>
-          <br />
-          <table class="datatables-basic table">
+        <a href="/Notification/AddNotification" class="btn btn-outline-primary">Add New Notification</a>
+        <div class="table-responsive text-nowrap">
+            <table class="table">
               <thead>
                   <tr>
                         <th>#</th>
@@ -24,23 +21,23 @@
                         <th>Open</th>
                   </tr>
               </thead>
-              <tbody>
+                <tbody class="table-border-bottom-0">
                   @foreach (var item in Model)
                     {
                         count++;
                         <tr>
                             <td>@count</td>
-                            <td>@item.Title</td>
+                            <td><strong>@item.Title</strong></td>
                             <td>@item.Date.ToShortDateString()</td>
                             @if(item.Status=="Not Read")
                             {
-                                <td><label class="badge badge-danger" style="color:red;">@item.Status</label></td>
+                                <td><span class="badge bg-label-danger me-1">@item.Status</span></td>
                             }
                             else
                             {
-                                <td><label class="badge badge-success" style="color:green;">@item.Status</label></td>
+                                <td><span class="badge bg-label-success me-1">@item.Status</span></td>
                             }
-                            <td><a href="/Notification/OpenNotification/@item.NotificationId" class="btn btn-info">Open</a></td>
+                            <td><a href="/Notification/OpenNotification/@item.NotificationId" class="btn btn-outline-primary">Open</a></td>
                         </tr>
                     }
               </tbody>

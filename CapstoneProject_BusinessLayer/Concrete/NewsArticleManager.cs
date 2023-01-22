@@ -18,6 +18,11 @@ namespace CapstoneProject_BusinessLayer.Concrete
             _newsArticleDal = newsArticleDal;
         }
 
+        public List<NewsArticle> GetByUserName(string userName)
+        {
+            return _newsArticleDal.GetByUserName(userName);
+        }
+
         public List<NewsArticle> GetNewsArticleByCategory()
         {
             return _newsArticleDal.GetNewsArticleByCategory();

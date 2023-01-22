@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace CapstoneProject_DataAccessLayer.Abstract
 {
-    public interface IArticleDal : IGenericDal<Article>
+    public interface IUserActivityTimelineDal 
     {
-        List<Article> GetArticleByCategory();
-        List<Article> GetByUserName(string name);
+        void Add(UserActivityTimeline userActivityTimeline);
+        List<UserActivityTimeline> GetAllByUserName(string userName);
     }
 }

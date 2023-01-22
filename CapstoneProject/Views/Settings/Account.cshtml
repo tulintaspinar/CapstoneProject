@@ -109,11 +109,24 @@
             <p class="card-text text-uppercase">Overview</p>
             <ul class="list-unstyled mb-0">
               <li class="d-flex align-items-center mb-3">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-point" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-point" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                 <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                                 <circle cx="12" cy="12" r="4"></circle>
-                            </svg><span class="fw-bold mx-2">Total Count Posts:</span> <span>13.5k</span>
+                  </svg><span class="fw-bold mx-2">Total Count Posts:</span> <span>@ViewBag.TotalCount</span>
               </li>
+              <li class="d-flex align-items-center mb-3">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-point" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                      <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                      <circle cx="12" cy="12" r="4"></circle>
+                  </svg><span class="fw-bold mx-2">Total Articles Count:</span> <span>@ViewBag.ArticleCount</span>
+              </li>
+              <li class="d-flex align-items-center mb-3">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-point" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                      <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                      <circle cx="12" cy="12" r="4"></circle>
+                  </svg><span class="fw-bold mx-2">Total News Articles Count:</span> <span>@ViewBag.NewsArticleCount</span>
+              </li>
+                        
             </ul>
           </div>
         </div>
@@ -122,162 +135,65 @@
 
       <div class="col-xl-8 col-lg-7 col-md-7">
         <!-- Activity Timeline -->
-        <div class="card card-action mb-4">
+        <div class="card card-action mb-6">
           <div class="card-header align-items-center">
             <h5 class="card-action-title mb-0">Activity Timeline</h5>
           </div>
           <div class="card-body pb-0">
-            <ul class="timeline ms-1 mb-0">
-              <li class="timeline-item timeline-item-transparent">
-                <span class="timeline-point timeline-point-success"></span>
-                <div class="timeline-event">
-                  <div class="timeline-header">
-                    <h6 class="mb-0">Create a new project for client</h6>
-                    <small class="text-muted">2 Day Ago</small>
-                  </div>
-                  <p class="mb-0">Add files to new design folder</p>
-                </div>
-              </li>
-              <li class="timeline-item timeline-item-transparent border-0">
-                <span class="timeline-point timeline-point-info"></span>
-                <div class="timeline-event">
-                  <div class="timeline-header">
-                    <h6 class="mb-0">Project status updated</h6>
-                    <small class="text-muted">10 Day Ago</small>
-                  </div>
-                  <p class="mb-0">Woocommerce iOS App Completed</p>
-                </div>
-              </li>
+            <ul class="timeline ms-1 mb-1">
+                @foreach (var item in ViewBag.ActivityTimeline)
+                {
+                    if (item.TypeOfWritingName=="Register"){
+                                <li class="timeline-item timeline-item-transparent">
+                                    <span class="timeline-point timeline-point-danger"></span>
+                                    <div class="timeline-event">
+                                        <div class="timeline-header">
+                                            <h6 class="mb-0">@item.TypeOfWritingName</h6>
+                                            <small class="text-muted">@item.Date.ToShortDateString()</small>
+                                        </div>
+                                    </div>
+                                </li>
+                    }
+                    else if(item.TypeOfWritingName=="Article Added"){
+                                <li class="timeline-item timeline-item-transparent">
+                                    <span class="timeline-point timeline-point-info"></span>
+                                    <div class="timeline-event">
+                                        <div class="timeline-header">
+                                            <h6 class="mb-0">@item.TypeOfWritingName</h6>
+                                            <small class="text-muted">@item.Date.ToShortDateString()</small>
+                                        </div>
+                                    </div>
+                                </li>
+                    }
+                    else if (item.TypeOfWritingName=="News article Added"){
+                                <li class="timeline-item timeline-item-transparent">
+                                    <span class="timeline-point timeline-point-success"></span>
+                                    <div class="timeline-event">
+                                        <div class="timeline-header">
+                                            <h6 class="mb-0">@item.TypeOfWritingName</h6>
+                                            <small class="text-muted">@item.Date.ToShortDateString()</small>
+                                        </div>
+                                    </div>
+                                </li>
+                    }
+                    else{
+                                <li class="timeline-item timeline-item-transparent">
+                                    <span class="timeline-point timeline-point-warning"></span>
+                                    <div class="timeline-event">
+                                        <div class="timeline-header">
+                                            <h6 class="mb-0">@item.TypeOfWritingName</h6>
+                                            <small class="text-muted">@item.Date.ToShortDateString()</small>
+                                        </div>
+                                    </div>
+                                </li>
+                    }
+                }
             </ul>
           </div>
         </div>
         <!--/ Activity Timeline -->
         <div class="row">
-          <!-- Connections -->
-          <div class="col-lg-12 col-xl-12">
-            <div class="card card-action mb-4">
-              <div class="card-header align-items-center">
-                <h5 class="card-action-title mb-0">Connections</h5>
-                <div class="card-action-element">
-                  <div class="dropdown">
-                    <button type="button" class="btn dropdown-toggle hide-arrow p-0" data-bs-toggle="dropdown" aria-expanded="false"><i class="ti ti-dots-vertical text-muted"></i></button>
-                    <ul class="dropdown-menu dropdown-menu-end">
-                      <li><a class="dropdown-item" href="javascript:void(0);">Share connections</a></li>
-                      <li><a class="dropdown-item" href="javascript:void(0);">Suggest edits</a></li>
-                      <li>
-                        <hr class="dropdown-divider">
-                      </li>
-                      <li><a class="dropdown-item" href="javascript:void(0);">Report bug</a></li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-              <div class="card-body">
-                <ul class="list-unstyled mb-0">
-                  <li class="mb-3">
-                    <div class="d-flex align-items-start">
-                      <div class="d-flex align-items-start">
-                        <div class="avatar me-2">
-                          <img src="../../assets/img/avatars/2.png" alt="Avatar" class="rounded-circle">
-                        </div>
-                        <div class="me-2 ms-1">
-                          <h6 class="mb-0">Cecilia Payne</h6>
-                          <small class="text-muted">45 Connections</small>
-                        </div>
-                      </div>
-                      <div class="ms-auto">
-                        <button class="btn btn-label-primary btn-icon btn-sm"><i class="ti ti-user-check ti-xs"></i></button>
-                      </div>
-                    </div>
-                  </li>
-                  <li class="mb-3">
-                    <div class="d-flex align-items-start">
-                      <div class="d-flex align-items-start">
-                        <div class="avatar me-2">
-                          <img src="../../assets/img/avatars/3.png" alt="Avatar" class="rounded-circle">
-                        </div>
-                        <div class="me-2 ms-1">
-                          <h6 class="mb-0">Curtis Fletcher</h6>
-                          <small class="text-muted">1.32k Connections</small>
-                        </div>
-                      </div>
-                      <div class="ms-auto">
-                        <button class="btn btn-primary btn-icon btn-sm"><i class="ti ti-user-x ti-xs"></i></button>
-                      </div>
-                    </div>
-                  </li>
-                  <li class="mb-3">
-                    <div class="d-flex align-items-start">
-                      <div class="d-flex align-items-start">
-                        <div class="avatar me-2">
-                          <img src="../../assets/img/avatars/10.png" alt="Avatar" class="rounded-circle">
-                        </div>
-                        <div class="me-2 ms-1">
-                          <h6 class="mb-0">Alice Stone</h6>
-                          <small class="text-muted">125 Connections</small>
-                        </div>
-                      </div>
-                      <div class="ms-auto">
-                        <button class="btn btn-primary btn-icon btn-sm"><i class="ti ti-user-x ti-xs"></i></button>
-                      </div>
-                    </div>
-                  </li>
-                  <li class="mb-3">
-                    <div class="d-flex align-items-start">
-                      <div class="d-flex align-items-start">
-                        <div class="avatar me-2">
-                          <img src="../../assets/img/avatars/7.png" alt="Avatar" class="rounded-circle">
-                        </div>
-                        <div class="me-2 ms-1">
-                          <h6 class="mb-0">Darrell Barnes</h6>
-                          <small class="text-muted">456 Connections</small>
-                        </div>
-                      </div>
-                      <div class="ms-auto">
-                        <button class="btn btn-label-primary btn-icon btn-sm"><i class="ti ti-user-check ti-xs"></i></button>
-                      </div>
-                    </div>
-                  <li class="mb-3">
-                    <div class="d-flex align-items-start">
-                      <div class="d-flex align-items-start">
-                        <div class="avatar me-2">
-                          <img src="../../assets/img/avatars/12.png" alt="Avatar" class="rounded-circle">
-                        </div>
-                        <div class="me-2 ms-1">
-                          <h6 class="mb-0">Eugenia Moore</h6>
-                          <small class="text-muted">1.2k Connections</small>
-                        </div>
-                      </div>
-                      <div class="ms-auto">
-                        <button class="btn btn-label-primary btn-icon btn-sm"><i class="ti ti-user-check ti-xs"></i></button>
-                      </div>
-                    </div>
-                  </li>
-                  <li class="text-center">
-                    <a href="javascript:;">View all connections</a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <!--/ Connections -->
         </div>
-        <!-- Writes table -->
-        <div class="card mb-12">
-          <div class="card-datatable table-responsive">
-            <table class="datatables-projects table border-top">
-              <thead>
-                <tr>
-                  <th>#</th>
-                  <th>Name</th>
-                  <th>Category</th>
-                  <th>Date</th>
-                </tr>
-              </thead>
-            </table>
-          </div>
-        </div>
-        <!--/ Writes table -->
       </div>
     </div>    
     <!-- /User Profile Content -->

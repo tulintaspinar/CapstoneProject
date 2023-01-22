@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace CapstoneProject_BusinessLayer.Abstract
 {
-    public interface IArticleService : IGenericService<Article>
+    public interface IUserActivityTimelineService
     {
-        List<Article> GetArticleByCategory();
-        List<Article> GetByUserName(string name);
+        void Add(UserActivityTimeline userActivityTimeline);
+        List<UserActivityTimeline> GetAllByUserName(string userName);
     }
 }

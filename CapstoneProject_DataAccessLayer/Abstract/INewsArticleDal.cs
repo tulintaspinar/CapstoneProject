@@ -10,5 +10,6 @@ namespace CapstoneProject_DataAccessLayer.Abstract
     public interface INewsArticleDal : IGenericDal<NewsArticle>
     {
         List<NewsArticle> GetNewsArticleByCategory();
+        List<NewsArticle> GetByUserName(string userName);
     }
 }

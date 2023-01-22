@@ -5,19 +5,13 @@
     int count = 0;
 }
 <div class="container-xxl flex-grow-1 container-p-y">
-    <!-- Users List Table -->
+    <h4 class="fw-bold py-3 mb-4">
+        <span class="text-muted fw-light">Category /</span> All Category
+    </h4>
     <div class="card">
-        <div class="card-header border-bottom">
-            <h5 class="card-title mb-3">CATEGORIES</h5>
-            <div class="d-flex justify-content-between align-items-center row pb-2 gap-3 gap-md-0">
-                <div class="col-md-4 user_role"></div>
-                <div class="col-md-4 user_plan"></div>
-                <div class="col-md-4 user_status"></div>
-            </div>
-        </div>
         <a href="/Category/Add" class="btn btn-outline-primary offcanvas-title">Add New Categories</a>
-        <div class="card-datatable table-responsive">
-            <table class="datatables-users table border-top">
+        <div class="table-responsive text-nowrap">
+            <table class="table">
                 <thead>
                     <tr>
                         <th>#</th>
@@ -27,14 +21,14 @@
                         <th>UPDATE</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody class="table-border-bottom-0">
                     @foreach (var item in Model)
                     {
                         count++;
                         <tr>
                             <td>@count</td>
-                            <td>@item.CategoryName</td>
-                            <td>@item.TypesOfWriting.Name</td>
+                            <td><strong>@item.CategoryName</strong></td>
+                            <td><span class="badge bg-label-success me-1">@item.TypesOfWriting.Name</span></td>
                             <td><a href="/Category/Delete/@item.ArticleCategoryID" class="btn btn-outline-danger">Delete</a></td>
                             <td><a href="/Category/Update/@item.ArticleCategoryID" class="btn btn-outline-info">Update</a></td>
                         </tr>

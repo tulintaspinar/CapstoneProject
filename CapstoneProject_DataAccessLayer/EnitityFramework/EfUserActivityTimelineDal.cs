@@ -2,7 +2,6 @@
 using CapstoneProject_DataAccessLayer.Concrete;
 using CapstoneProject_DataAccessLayer.Repository;
 using CapstoneProject_EntityLayer.Concrete;
-using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,21 +10,22 @@ using System.Threading.Tasks;
 
 namespace CapstoneProject_DataAccessLayer.EnitityFramework
 {
-    public class EfNewsArticleDal : GenericRepository<NewsArticle>, INewsArticleDal
+    public class EfUserActivityTimelineDal : IUserActivityTimelineDal
     {
-        public List<NewsArticle> GetByUserName(string userName)
+        public void Add(UserActivityTimeline userActivityTimeline)
         {
             using(var context = new Context())
             {
-                return context.NewsArticles.Where(x => x.WriterName == userName).ToList();
+                context.UserActivityTimelines.Add(userActivityTimeline);
+                context.SaveChanges();
             }
         }
 
-        public List<NewsArticle> GetNewsArticleByCategory()
+        public List<UserActivityTimeline> GetAllByUserName(string userName)
         {
             using(var context = new Context())
             {
-                return context.NewsArticles.Include(x => x.ArticleCategory).ToList();
+                return context.UserActivityTimelines.Where(x => x.WriterName == userName).ToList();
             }
         }
     }

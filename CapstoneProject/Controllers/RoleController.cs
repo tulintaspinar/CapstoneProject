@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace CapstoneProject.Controllers
 {
-    [Authorize(Roles = "Admin")]
+    //[Authorize(Roles = "Admin")]
     public class RoleController : Controller
     {
         public readonly RoleManager<AppRole> _roleManager;
