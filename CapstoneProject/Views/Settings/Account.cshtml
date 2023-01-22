@@ -1,8 +1,285 @@
-﻿
+﻿@model UserDTO
 @{
     ViewData["Title"] = "Account";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<div class="container-xxl flex-grow-1 container-p-y">                     
+    <h4 class="fw-bold py-3 mb-4">
+      <span class="text-muted fw-light">User Profile /</span> Profile
+    </h4>
 
-<h1>Account</h1>
+    <!-- Header -->
+    <div class="row">
+      <div class="col-12">
+        <div class="card mb-4">
+    @*      <div class="user-profile-header-banner">
+                        <img src="~/IMAGES/UserImages/@ViewBag.UserImage" alt="Banner image" class="rounded-top">
+          </div>*@
+          <div class="user-profile-header d-flex flex-column flex-sm-row text-sm-start text-center mb-4">
+            <div class="flex-shrink-0 mt-n2 mx-sm-0 mx-auto">
+              <img src="~/IMAGES/UserImages/@ViewBag.UserImage" width="250" height="250" alt="user image" class="d-block h-auto ms-0 ms-sm-4 rounded user-profile-img">
+            </div>
+            <div class="flex-grow-1 mt-3 mt-sm-5">
+              <div class="d-flex align-items-md-end align-items-sm-start align-items-center justify-content-md-between justify-content-start mx-4 flex-md-row flex-column gap-4">
+                <div class="user-profile-info">
+                  <h4>@ViewBag.UserName</h4>
+                  <ul class="list-inline mb-0 d-flex align-items-center flex-wrap justify-content-sm-start justify-content-center gap-2">
+                    <li class="list-inline-item">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-premium-rights" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                            <circle cx="12" cy="12" r="9"></circle>
+                                            <path d="M13.867 9.75c-.246 -.48 -.708 -.769 -1.2 -.75h-1.334c-.736 0 -1.333 .67 -1.333 1.5c0 .827 .597 1.499 1.333 1.499h1.334c.736 0 1.333 .671 1.333 1.5c0 .828 -.597 1.499 -1.333 1.499h-1.334c-.492 .019 -.954 -.27 -1.2 -.75"></path>
+                                            <path d="M12 7v2"></path>
+                                            <path d="M12 15v2"></path>
+                                        </svg> @ViewBag.Job
+                    </li>
+                    <li class="list-inline-item">
+                      <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-arrows-join-2" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+   <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+   <path d="M3 7h1.948c1.913 0 3.705 .933 4.802 2.5a5.861 5.861 0 0 0 4.802 2.5h6.448"></path>
+   <path d="M3 17h1.95a5.854 5.854 0 0 0 4.798 -2.5a5.854 5.854 0 0 1 4.798 -2.5h5.454"></path>
+   <path d="M18 15l3 -3l-3 -3"></path>
+</svg> Joined @ViewBag.JoinDate</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- /Header -->
+
+    <!-- User Profile Content -->
+    <div class="row">
+      <div class="col-xl-4 col-lg-5 col-md-5">
+        <!-- About User -->
+        <div class="card mb-4">
+          <div class="card-body">
+            <small class="card-text text-uppercase">About</small>
+            <ul class="list-unstyled mb-4 mt-3">
+              <li class="d-flex align-items-center mb-3">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-point" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                <circle cx="12" cy="12" r="4"></circle>
+                            </svg>
+                            <span class="fw-bold mx-2">Full Name:</span> <span>@Model.Name  @Model.Surname</span>
+              </li>
+              <li class="d-flex align-items-center mb-3">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-point" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                <circle cx="12" cy="12" r="4"></circle>
+                            </svg><span class="fw-bold mx-2">User Name:</span> <span>@Model.UserName</span>
+              </li>
+              <li class="d-flex align-items-center mb-3">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-point" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                <circle cx="12" cy="12" r="4"></circle>
+                            </svg><span class="fw-bold mx-2">Age:</span> <span>@Model.Age</span>
+              </li>
+              <li class="d-flex align-items-center mb-3">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-point" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                <circle cx="12" cy="12" r="4"></circle>
+                            </svg><span class="fw-bold mx-2">Job:</span> <span>@Model.Job</span>
+              </li>
+            </ul>
+            <small class="card-text text-uppercase">Contacts</small>
+            <ul class="list-unstyled mb-4 mt-3">
+              <li class="d-flex align-items-center mb-3">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-point" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                <circle cx="12" cy="12" r="4"></circle>
+                            </svg><span class="fw-bold mx-2">Phone:</span> <span>@Model.Phone</span>
+              </li>
+              <li class="d-flex align-items-center mb-3">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-point" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                <circle cx="12" cy="12" r="4"></circle>
+                            </svg><span class="fw-bold mx-2">Email:</span> <span>@Model.Email</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <!--/ About User -->
+
+        <!-- Profile Overview -->
+        <div class="card mb-4">
+          <div class="card-body">
+            <p class="card-text text-uppercase">Overview</p>
+            <ul class="list-unstyled mb-0">
+              <li class="d-flex align-items-center mb-3">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-point" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                <circle cx="12" cy="12" r="4"></circle>
+                            </svg><span class="fw-bold mx-2">Total Count Posts:</span> <span>13.5k</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <!--/ Profile Overview -->
+      </div>
+
+      <div class="col-xl-8 col-lg-7 col-md-7">
+        <!-- Activity Timeline -->
+        <div class="card card-action mb-4">
+          <div class="card-header align-items-center">
+            <h5 class="card-action-title mb-0">Activity Timeline</h5>
+          </div>
+          <div class="card-body pb-0">
+            <ul class="timeline ms-1 mb-0">
+              <li class="timeline-item timeline-item-transparent">
+                <span class="timeline-point timeline-point-success"></span>
+                <div class="timeline-event">
+                  <div class="timeline-header">
+                    <h6 class="mb-0">Create a new project for client</h6>
+                    <small class="text-muted">2 Day Ago</small>
+                  </div>
+                  <p class="mb-0">Add files to new design folder</p>
+                </div>
+              </li>
+              <li class="timeline-item timeline-item-transparent border-0">
+                <span class="timeline-point timeline-point-info"></span>
+                <div class="timeline-event">
+                  <div class="timeline-header">
+                    <h6 class="mb-0">Project status updated</h6>
+                    <small class="text-muted">10 Day Ago</small>
+                  </div>
+                  <p class="mb-0">Woocommerce iOS App Completed</p>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <!--/ Activity Timeline -->
+        <div class="row">
+          <!-- Connections -->
+          <div class="col-lg-12 col-xl-12">
+            <div class="card card-action mb-4">
+              <div class="card-header align-items-center">
+                <h5 class="card-action-title mb-0">Connections</h5>
+                <div class="card-action-element">
+                  <div class="dropdown">
+                    <button type="button" class="btn dropdown-toggle hide-arrow p-0" data-bs-toggle="dropdown" aria-expanded="false"><i class="ti ti-dots-vertical text-muted"></i></button>
+                    <ul class="dropdown-menu dropdown-menu-end">
+                      <li><a class="dropdown-item" href="javascript:void(0);">Share connections</a></li>
+                      <li><a class="dropdown-item" href="javascript:void(0);">Suggest edits</a></li>
+                      <li>
+                        <hr class="dropdown-divider">
+                      </li>
+                      <li><a class="dropdown-item" href="javascript:void(0);">Report bug</a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="card-body">
+                <ul class="list-unstyled mb-0">
+                  <li class="mb-3">
+                    <div class="d-flex align-items-start">
+                      <div class="d-flex align-items-start">
+                        <div class="avatar me-2">
+                          <img src="../../assets/img/avatars/2.png" alt="Avatar" class="rounded-circle">
+                        </div>
+                        <div class="me-2 ms-1">
+                          <h6 class="mb-0">Cecilia Payne</h6>
+                          <small class="text-muted">45 Connections</small>
+                        </div>
+                      </div>
+                      <div class="ms-auto">
+                        <button class="btn btn-label-primary btn-icon btn-sm"><i class="ti ti-user-check ti-xs"></i></button>
+                      </div>
+                    </div>
+                  </li>
+                  <li class="mb-3">
+                    <div class="d-flex align-items-start">
+                      <div class="d-flex align-items-start">
+                        <div class="avatar me-2">
+                          <img src="../../assets/img/avatars/3.png" alt="Avatar" class="rounded-circle">
+                        </div>
+                        <div class="me-2 ms-1">
+                          <h6 class="mb-0">Curtis Fletcher</h6>
+                          <small class="text-muted">1.32k Connections</small>
+                        </div>
+                      </div>
+                      <div class="ms-auto">
+                        <button class="btn btn-primary btn-icon btn-sm"><i class="ti ti-user-x ti-xs"></i></button>
+                      </div>
+                    </div>
+                  </li>
+                  <li class="mb-3">
+                    <div class="d-flex align-items-start">
+                      <div class="d-flex align-items-start">
+                        <div class="avatar me-2">
+                          <img src="../../assets/img/avatars/10.png" alt="Avatar" class="rounded-circle">
+                        </div>
+                        <div class="me-2 ms-1">
+                          <h6 class="mb-0">Alice Stone</h6>
+                          <small class="text-muted">125 Connections</small>
+                        </div>
+                      </div>
+                      <div class="ms-auto">
+                        <button class="btn btn-primary btn-icon btn-sm"><i class="ti ti-user-x ti-xs"></i></button>
+                      </div>
+                    </div>
+                  </li>
+                  <li class="mb-3">
+                    <div class="d-flex align-items-start">
+                      <div class="d-flex align-items-start">
+                        <div class="avatar me-2">
+                          <img src="../../assets/img/avatars/7.png" alt="Avatar" class="rounded-circle">
+                        </div>
+                        <div class="me-2 ms-1">
+                          <h6 class="mb-0">Darrell Barnes</h6>
+                          <small class="text-muted">456 Connections</small>
+                        </div>
+                      </div>
+                      <div class="ms-auto">
+                        <button class="btn btn-label-primary btn-icon btn-sm"><i class="ti ti-user-check ti-xs"></i></button>
+                      </div>
+                    </div>
+                  <li class="mb-3">
+                    <div class="d-flex align-items-start">
+                      <div class="d-flex align-items-start">
+                        <div class="avatar me-2">
+                          <img src="../../assets/img/avatars/12.png" alt="Avatar" class="rounded-circle">
+                        </div>
+                        <div class="me-2 ms-1">
+                          <h6 class="mb-0">Eugenia Moore</h6>
+                          <small class="text-muted">1.2k Connections</small>
+                        </div>
+                      </div>
+                      <div class="ms-auto">
+                        <button class="btn btn-label-primary btn-icon btn-sm"><i class="ti ti-user-check ti-xs"></i></button>
+                      </div>
+                    </div>
+                  </li>
+                  <li class="text-center">
+                    <a href="javascript:;">View all connections</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <!--/ Connections -->
+        </div>
+        <!-- Writes table -->
+        <div class="card mb-12">
+          <div class="card-datatable table-responsive">
+            <table class="datatables-projects table border-top">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Name</th>
+                  <th>Category</th>
+                  <th>Date</th>
+                </tr>
+              </thead>
+            </table>
+          </div>
+        </div>
+        <!--/ Writes table -->
+      </div>
+    </div>    
+    <!-- /User Profile Content -->
+</div>
 

@@ -1,0 +1,93 @@
+﻿@model List<Notification>
+
+<li class="nav-item dropdown-notifications navbar-dropdown dropdown me-3 me-xl-1">
+    <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-bell-ringing" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+            <path d="M10 5a2 2 0 0 1 4 0a7 7 0 0 1 4 6v3a4 4 0 0 0 2 3h-16a4 4 0 0 0 2 -3v-3a7 7 0 0 1 4 -6"></path>
+            <path d="M9 17v1a3 3 0 0 0 6 0v-1"></path>
+            <path d="M21 6.727a11.05 11.05 0 0 0 -2.794 -3.727"></path>
+            <path d="M3 6.727a11.05 11.05 0 0 1 2.792 -3.727"></path>
+        </svg>
+        <span class="badge bg-danger rounded-pill badge-notifications">3</span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end py-0">
+        <li class="dropdown-menu-header border-bottom">
+            <div class="dropdown-header d-flex align-items-center py-3">
+                <h5 class="text-body mb-0 me-auto">Notification</h5>
+            </div>
+        </li>
+        <li class="dropdown-notifications-list scrollable-container">
+            <ul class="list-group list-group-flush">
+                @foreach (var item in Model)
+                {
+                    if (item.Status == "Readed")
+                    {
+                        <li class="list-group-item list-group-item-action dropdown-notifications-item marked-as-read">
+                            <div class="d-flex">
+                                <div class="flex-shrink-0 me-3">
+                                    <div class="avatar">
+                                        <span class="avatar-initial rounded-circle bg-label-danger">N</span>
+                                    </div>
+                                </div>
+                                <div class="flex-grow-1">
+                                    <h6 class="mb-1">@item.Title</h6>
+                                    <p class="mb-0">@item.Description.Substring(0,5)...</p>
+                                    <small class="text-muted">@item.Date.ToShortDateString()</small>
+                                </div>
+                                <div class="flex-shrink-0 dropdown-notifications-actions">
+                                    <a href="/Notification/OpenNotification/@item.NotificationId" class="dropdown-notifications-read"><span class="badge badge-dot">Open</span></a>
+                                    <a href="javascript:void(0)" class="dropdown-notifications-archive">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-bell-off" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                            <line x1="3" y1="3" x2="21" y2="21"></line>
+                                            <path d="M17 17h-13a4 4 0 0 0 2 -3v-3a7 7 0 0 1 1.279 -3.716m2.072 -1.934c.209 -.127 .425 -.244 .649 -.35a2 2 0 1 1 4 0a7 7 0 0 1 4 6v3"></path>
+                                            <path d="M9 17v1a3 3 0 0 0 6 0v-1"></path>
+                                        </svg>
+                                    </a>
+
+                                </div>
+                            </div>
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="list-group-item list-group-item-action dropdown-notifications-item">
+                            <div class="d-flex">
+                                <div class="flex-shrink-0 me-3">
+                                    <div class="avatar">
+                                        <span class="avatar-initial rounded-circle bg-label-success">N</span>
+                                    </div>
+                                </div>
+                                <div class="flex-grow-1">
+                                    <h6 class="mb-1">@item.Title</h6>
+                                    <p class="mb-0">@item.Description.Substring(0,5)...</p>
+                                    <small class="text-muted">@item.Date.ToShortDateString()</small>
+                                </div>
+                                <div class="flex-shrink-0 dropdown-notifications-actions">
+                                    <a href="/Notification/OpenNotification/@item.NotificationId" class="dropdown-notifications-read"><span class="badge badge-dot"></span></a>
+                                    <a href="javascript:void(0)" class="dropdown-notifications-archive">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-bell-ringing" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                            <path d="M10 5a2 2 0 0 1 4 0a7 7 0 0 1 4 6v3a4 4 0 0 0 2 3h-16a4 4 0 0 0 2 -3v-3a7 7 0 0 1 4 -6"></path>
+                                            <path d="M9 17v1a3 3 0 0 0 6 0v-1"></path>
+                                            <path d="M21 6.727a11.05 11.05 0 0 0 -2.794 -3.727"></path>
+                                            <path d="M3 6.727a11.05 11.05 0 0 1 2.792 -3.727"></path>
+                                        </svg>
+                                    </a>
+                                </div>
+                            </div>
+                        </li>
+                    }
+                }
+                
+               
+            </ul>
+        </li>
+        <li class="dropdown-menu-footer border-top">
+            <a href="/Notification/Index" class="dropdown-item d-flex justify-content-center text-primary p-2 h-px-40 mb-1 align-items-center">
+                View all notifications
+            </a>
+        </li>
+    </ul>
+</li>

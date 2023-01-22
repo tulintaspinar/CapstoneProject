@@ -1,0 +1,50 @@
+﻿@model List<Notification>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    int count = 0;
+}
+<div class="container-xxl flex-grow-1 container-p-y">
+    <h4 class="fw-bold py-3 mb-4">
+        <span class="text-muted fw-light">Notifications /</span> All Notification
+    </h4>
+    <div class="card">
+
+      <div class="card-datatable table-responsive pt-0">
+          <br />
+          <a href="/Notification/AddNotification" class="btn btn-outline-primary">Add New Notification</a>
+          <br />
+          <table class="datatables-basic table">
+              <thead>
+                  <tr>
+                        <th>#</th>
+                        <th>Title</th>
+                        <th>Date</th>
+                        <th>Status</th>
+                        <th>Open</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  @foreach (var item in Model)
+                    {
+                        count++;
+                        <tr>
+                            <td>@count</td>
+                            <td>@item.Title</td>
+                            <td>@item.Date.ToShortDateString()</td>
+                            @if(item.Status=="Not Read")
+                            {
+                                <td><label class="badge badge-danger" style="color:red;">@item.Status</label></td>
+                            }
+                            else
+                            {
+                                <td><label class="badge badge-success" style="color:green;">@item.Status</label></td>
+                            }
+                            <td><a href="/Notification/OpenNotification/@item.NotificationId" class="btn btn-info">Open</a></td>
+                        </tr>
+                    }
+              </tbody>
+          </table>
+      </div>
+    </div>
+</div>

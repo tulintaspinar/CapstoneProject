@@ -10,13 +10,13 @@ using System.Threading.Tasks;
 
 namespace CapstoneProject_DataAccessLayer.EnitityFramework
 {
-    public class EfArticleDal : GenericRepository<Article>, IArticleDal
+    public class EfNotificationDal : GenericRepository<Notification>, INotificationDal
     {
-        public List<Article> GetByUserName(string name)
+        public List<Notification> GetByUserId(int id)
         {
-            using(var context=new Context())
+            using(var context = new Context())
             {
-                return context.Articles.Where(x=>x.WriterName== name).ToList();
+                return context.Notifications.Where(x => x.UserId == id).ToList();
             }
         }
     }

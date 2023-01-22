@@ -9,5 +9,6 @@ namespace CapstoneProject_DataAccessLayer.Abstract
 {
     public interface IArticleDal : IGenericDal<Article>
     {
+        List<Article> GetByUserName(string name);
     }
 }

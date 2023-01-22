@@ -26,6 +26,9 @@ namespace CapstoneProject_BusinessLayer.DIContainer
 
             services.AddScoped<INewsArticleService, NewsArticleManager>();
             services.AddScoped<INewsArticleDal, EfNewsArticleDal>();
+
+            services.AddScoped<INotificationDal, EfNotificationDal>();
+            services.AddScoped<INotificationService, NotificationManager>();
         }
     }
 

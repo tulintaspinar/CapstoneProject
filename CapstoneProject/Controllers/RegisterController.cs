@@ -3,6 +3,7 @@ using CapstoneProject_EntityLayer.Concrete;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Threading.Tasks;
 
 namespace CapstoneProject.Controllers
@@ -33,8 +34,9 @@ namespace CapstoneProject.Controllers
                     Surname = register.Surname,
                     Email = register.Email,
                     UserName = register.UserName,
-                    NormalizedUserName = register.UserName.ToUpper()
-
+                    NormalizedUserName = register.UserName.ToUpper(),
+                    JoinDate = DateTime.Now,
+                    Job=register.Job
                 };
                 var result = await _userManager.CreateAsync(appUser, register.Password);
                 if(result.Succeeded)

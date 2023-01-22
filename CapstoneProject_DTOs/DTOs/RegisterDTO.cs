@@ -26,5 +26,7 @@ namespace CapstoneProject_DTOs.DTOs
 
         [Required]
         public int Age { get; set; }
+
+        public string Job { get; set; }
     }
 }

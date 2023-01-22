@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace CapstoneProject_BusinessLayer.Abstract
 {
-    public interface IArticleService : IGenericService<Article>
+    public interface INotificationService : IGenericService<Notification>
     {
-        List<Article> GetByUserName(string name);
+        List<Notification> GetByUserId(int id);
     }
 }

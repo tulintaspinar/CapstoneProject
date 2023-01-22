@@ -5,10 +5,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CapstoneProject_BusinessLayer.Abstract
+namespace CapstoneProject_DataAccessLayer.Abstract
 {
-    public interface IArticleService : IGenericService<Article>
+    public interface INotificationDal : IGenericDal<Notification>
     {
-        List<Article> GetByUserName(string name);
+        List<Notification> GetByUserId(int id);
     }
 }

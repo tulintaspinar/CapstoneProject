@@ -1,19 +1,19 @@
-﻿using Microsoft.AspNetCore.Identity;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CapstoneProject_EntityLayer.Concrete
+namespace CapstoneProject_DTOs.DTOs
 {
-    public class AppUser : IdentityUser<int>
+    public class UserDTO
     {
         public string Name { get; set; }
         public string Surname { get; set; }
-        public string Image { get; set; }
+        public string Email { get; set; }
         public int Age { get; set; }
-        public DateTime JoinDate { get; set; }
         public string Job { get; set; }
+        public string UserName { get; set; }
+        public string Phone { get; set; }
     }
 }

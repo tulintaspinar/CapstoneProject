@@ -18,6 +18,11 @@ namespace CapstoneProject_BusinessLayer.Concrete
             _articleDal = articleDal;
         }
 
+        public List<Article> GetByUserName(string name)
+        {
+            return _articleDal.GetByUserName(name);
+        }
+
         public void TAdd(Article t)
         {
             _articleDal.Insert(t);
