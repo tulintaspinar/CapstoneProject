@@ -6,7 +6,13 @@ using System.Threading.Tasks;
 
 namespace CapstoneProject_BusinessLayer.CQRS.Queries.WriterQueries
 {
-    public class GetAllWritersInformationQuery
+    public class GetWritersInformationQuery
     {
+        public string UserName { get; set; }
+
+        public GetWritersInformationQuery(string userName)
+        {
+            UserName = userName;
+        }
     }
 }

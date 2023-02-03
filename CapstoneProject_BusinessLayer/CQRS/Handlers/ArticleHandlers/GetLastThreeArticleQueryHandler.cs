@@ -19,6 +19,7 @@ namespace CapstoneProject_BusinessLayer.CQRS.Handlers.ArticleHandlers
         {
             var values = _context.Articles.Include(x => x.ArticleCategory).Select(x => new GetArticleQueryResult
             {
+                Id = x.ArticleID,
                 ArticleCategory = x.ArticleCategory,
                 ArticleCategoryID = x.ArticleCategory.ArticleCategoryID,
                 Title = x.Title,

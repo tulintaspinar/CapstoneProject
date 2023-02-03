@@ -44,7 +44,8 @@ namespace CapstoneProject_BusinessLayer.DIContainer
             services.AddScoped<GetThreeNewsArticleCategoriesQueryHandler>();
             services.AddScoped<GetNewsArticleQueryHandler>();
             services.AddScoped<GetFiveNewsArticleQueryHandler>();
-            services.AddScoped<GetAllWritersInformationQueryHandler>();
+            services.AddScoped<GetWritersImageQueryHandle>();
+            services.AddScoped<GetWritersInformationQueryHandle>();
         }
     }
 

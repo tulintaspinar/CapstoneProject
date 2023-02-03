@@ -1,4 +1,5 @@
-﻿@{
+﻿@model ContactViewModel
+@{
     Layout = null;
 }
 <!doctype html>
@@ -52,40 +53,40 @@
                                 <h2>Say Hello! </h2>
                                 <p>Donec cursus dolor vitae congue consectetur. Morbi mattis viverra felis. Etiam dapibus id turpis at sagittis. Cras mollis mi vel ante ultricies, id ullamcorper mi pulvinar. Proin bibendum ornare risus, lacinia cursus quam condimentum id. Curabitur auctor massa eget porttitor molestie. Aliquam imperdiet dolor nec metus pulvinar sollicitudin. </p>
                                 <p><strong>Aliquam iaculis at odio ut tempus</strong>. Suspendisse blandit luctus dui, a consequat mauris mollis id. Sed in ante at tortor malesuada imperdiet. Vestibulum sed gravida nibh. Nulla suscipit congue lorem, id tempor ipsum molestie sit amet. Nulla ultricies vitae erat in tincidunt. Maecenas tempus quam et ipsum elementum, a efficitur lectus tincidunt. Praesent diam elit, tincidunt ac tempus vulputate, aliquet viverra mauris. Etiam eu nunc efficitur, sagittis est ut, fringilla neque. Ut interdum eget lorem eget congue. Ut nec arcu placerat, mattis urna vel, consequat diam. Sed in leo in dolor suscipit molestie. </p>
-                                <p class="primary-color">Email: <a href="#">mepress@gmail.com</a></p>
+                                <p class="primary-color">Email: <a href="#">mailgonderme3@gmail.com</a></p>
                             </div>
                             <!-- Start Contact Form  -->
                             <div class="axil-section-gapTop axil-contact-form-area">
                                 <h4 class="title mb--10">Send Us a Message</h4>
                                 <p class="b3 mb--30">Your email address will not be published. All the fields are required.</p>
-                                <form id="contact-form" method="POST" action="mail.php" class="axil-contact-form contact-form--1 row">
+                                <form method="POST">
                                     <div class="col-lg-4 col-md-4 col-12">
                                         <div class="form-group">
                                             <label for="contact-name">Your Name</label>
-                                            <input name="contact-name" id="contact-name" type="text">
+                                            <input asp-for="NameSurname" type="text">
                                         </div>
                                     </div>
                                     <div class="col-lg-4 col-md-4 col-12">
                                         <div class="form-group">
                                             <label for="contact-phone">Phone</label>
-                                            <input type="text" name="contact-phone" id="contact-phone">
+                                            <input type="text" asp-for="PhoneNumber">
                                         </div>
                                     </div>
                                     <div class="col-lg-4 col-md-4 col-12">
                                         <div class="form-group">
                                             <label>Your Email</label>
-                                            <input for="contact-email" name="contact-email" id="contact-email" type="email">
+                                            <input  asp-for="Email" type="email">
                                         </div>
                                     </div>
                                     <div class="col-12">
                                         <div class="form-group">
                                             <label for="contact-message">Your Message</label>
-                                            <textarea name="contact-message" id="contact-message"></textarea>
+                                            <textarea asp-for="Message" ></textarea>
                                         </div>
                                     </div>
                                     <div class="col-12">
                                         <div class="form-submit">
-                                            <button name="submit" type="submit" id="submit" class="axil-button button-rounded btn-primary">Submit</button>
+                                            <button type="submit" class="axil-button button-rounded btn-primary">Submit</button>
                                         </div>
                                     </div>
                                 </form>

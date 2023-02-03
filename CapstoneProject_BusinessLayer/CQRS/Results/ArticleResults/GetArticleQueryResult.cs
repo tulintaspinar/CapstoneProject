@@ -5,6 +5,7 @@ namespace CapstoneProject_BusinessLayer.CQRS.Results.ArticleResults
 {
     public class GetArticleQueryResult
     {
+        public int Id { get; set; }
         //Banner - More Posts
         public int ArticleCategoryID { get; set; }
         public ArticleCategory ArticleCategory { get; set; }    

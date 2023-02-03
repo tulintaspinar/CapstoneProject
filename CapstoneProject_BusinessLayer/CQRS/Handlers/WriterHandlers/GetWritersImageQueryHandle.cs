@@ -8,17 +8,17 @@ using System.Threading.Tasks;
 
 namespace CapstoneProject_BusinessLayer.CQRS.Handlers.WriterHandlers
 {
-    public class GetAllWritersInformationQueryHandler
+    public class GetWritersImageQueryHandle
     {
         private readonly Context _context;
 
-        public GetAllWritersInformationQueryHandler(Context context)
+        public GetWritersImageQueryHandle(Context context)
         {
             _context = context;
         }
-        public List<GetAllWritersInformationQueryResult> Handle()
+        public List<Results.WriterResults.GetWritersImageQueryResult> Handle()
         {
-            var values = _context.Users.Select(x=>new GetAllWritersInformationQueryResult
+            var values = _context.Users.Select(x=>new GetWritersImageQueryResult
             {
                 ImageUrl=x.Image
             }).ToList();

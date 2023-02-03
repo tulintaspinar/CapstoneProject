@@ -6,9 +6,9 @@ namespace CapstoneProject.Areas.Homepage.ViewComponents.HomePageWriters
 {
     public class HomePageWriters : ViewComponent
     {
-        private readonly GetAllWritersInformationQueryHandler _getAllWritersInformationQueryHandler;
+        private readonly GetWritersImageQueryHandle _getAllWritersInformationQueryHandler;
 
-        public HomePageWriters(GetAllWritersInformationQueryHandler getAllWritersInformationQueryHandler)
+        public HomePageWriters(GetWritersImageQueryHandle getAllWritersInformationQueryHandler)
         {
             _getAllWritersInformationQueryHandler = getAllWritersInformationQueryHandler;
         }
