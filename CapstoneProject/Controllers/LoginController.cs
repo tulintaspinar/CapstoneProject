@@ -28,7 +28,7 @@ namespace CapstoneProject.Controllers
             var result = await _signInManager.PasswordSignInAsync(signIn.UserName, signIn.PasswordHash, true, true);
             if (result.Succeeded)
             {
-                return RedirectToAction("Index", "Dashboard");
+                return RedirectToAction("Index", "AdminDashboard");
             }
             return View();
         }

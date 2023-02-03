@@ -1,5 +1,5 @@
 ﻿using CapstoneProject_BusinessLayer.CQRS.Handlers.ArticlecategoriesHandlers;
-using CapstoneProject_BusinessLayer.CQRS.Handlers.ArticleHandlers;
+using CapstoneProject_BusinessLayer.CQRS.Handlers.NewsArticleHandlers;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 

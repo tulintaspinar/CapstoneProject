@@ -9,6 +9,7 @@ namespace CapstoneProject_BusinessLayer.CQRS.Results.NewsArticleResults
 {
     public class GetNewsArticleQueryResult
     {
+        public int Id { get; set; }
         public int ArticleCategoryID { get; set; }
         public ArticleCategory ArticleCategory { get; set; }
         public string Title { get; set; }

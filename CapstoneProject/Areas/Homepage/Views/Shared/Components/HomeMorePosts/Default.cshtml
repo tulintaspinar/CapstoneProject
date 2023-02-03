@@ -17,7 +17,7 @@
                         <div class="post-content">
                             <div class="post-cat">
                                 <div class="post-cat-list">
-                                    <a class="hover-flip-item-wrapper" href="/Homepage/ArticleDetail/@item.Id">
+                                    <a class="hover-flip-item-wrapper" href="/Homepage/Article/ArticleDetail/@item.Id">
                                         <span class="hover-flip-item">
                                             <span>@item.ArticleCategory.CategoryName</span>
                                         </span>
@@ -25,7 +25,7 @@
                                 </div>
                             </div>
                             <h4 class="title">
-                                <a href="post-details.html">
+                                <a href="/Homepage/Article/ArticleDetail/@item.Id">
                                     @item.Title
                                 </a>
                             </h4>
@@ -48,8 +48,8 @@
                             </div>
                         </div>
                         <div class="post-thumbnail">
-                            <a href="post-details.html">
-                                <img style="height:200px; width:225px;" src="~/IMAGES/ArticleImages/@item.ImageUrl" alt="Post Images">
+                            <a href="/Homepage/Article/ArticleDetail/@item.Id">
+                                <img style="height:200px; width:300px;" src="~/IMAGES/ArticleImages/@item.ImageUrl" alt="Post Images">
                             </a>
                         </div>
                     </div>

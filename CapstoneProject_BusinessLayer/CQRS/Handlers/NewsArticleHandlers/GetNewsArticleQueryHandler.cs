@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CapstoneProject_BusinessLayer.CQRS.Handlers.ArticleHandlers
+namespace CapstoneProject_BusinessLayer.CQRS.Handlers.NewsArticleHandlers
 {
     public class GetNewsArticleQueryHandler
     {
@@ -22,6 +22,7 @@ namespace CapstoneProject_BusinessLayer.CQRS.Handlers.ArticleHandlers
         {
             var values = _context.NewsArticles.Include(x => x.ArticleCategory).Select(x => new GetNewsArticleQueryResult
             {
+                Id=x.NewsArticleID,
                 ArticleCategory = x.ArticleCategory,
                 ArticleCategoryID = x.ArticleCategory.ArticleCategoryID,
                 Title = x.Title,

@@ -22,6 +22,7 @@ namespace CapstoneProject_BusinessLayer.CQRS.Handlers.NewsArticleHandlers
         {
             var values = _context.NewsArticles.Select(x => new GetNewsArticleQueryResult
             {
+                Id = x.NewsArticleID,
                 ArticleCategory = x.ArticleCategory,
                 ArticleCategoryID = x.ArticleCategoryID,
                 Date = x.Date,
