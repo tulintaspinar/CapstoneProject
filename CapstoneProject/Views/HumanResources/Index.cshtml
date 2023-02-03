@@ -1,0 +1,44 @@
+﻿@model List<AppUser>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    int count = 0;
+}
+<div class="container-xxl flex-grow-1 container-p-y">
+    <h4 class="fw-bold py-3 mb-4">
+        <span class="text-muted fw-light">Human Resources /</span> All Employee
+    </h4>
+    <div class="card">
+        <div class="table-responsive text-nowrap">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Employee Name Surname</th>
+                        <th>Role</th>
+                        <th>Date Of Start</th>
+                        <th>Salary</th>
+                        <th>Information</th>
+                        <th>Delete</th>
+                    </tr>
+                </thead>
+                <tbody class="table-border-bottom-0">
+                    @foreach (var item in Model)
+                    {
+                        count++;
+                        <tr class="table-active">
+                            <td>@count</td>
+                            <td><strong>@item.Name  @item.Surname</strong></td>
+                            <td><a href="/Role/AssignRole/@item.Id" class="btn btn-outline-warning">Add Role</a></td>
+                            <td>@item.JoinDate.ToShortDateString()</td>
+                            <td>@item.Salary</td>
+                            <td><a href="/HumanResources/Edit/@item.Id" class="btn btn-outline-primary">Information</a></td>
+                            <td><a href="/HumanResources/Delete/@item.Id" class="btn btn-outline-danger">Delete</a></td>
+                        </tr>
+                    }
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

@@ -1,27 +1,60 @@
 ﻿
 <ul class="menu-inner py-1">
+    @*Dashboard*@
     <li class="menu-item">
-        <a href="/Dashboard/Index" class="menu-link">
+        <a href="/AdminDashboard/Index" class="menu-link">
             <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home-2" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                <polyline points="5 12 3 12 12 3 21 12 19 12"></polyline>
                <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7"></path>
                <rect x="10" y="12" width="4" height="4"></rect>
             </svg>
-            <div data-i18n="Account">    Dashboard</div>
+            <div>    Dashboard</div>
         </a>
     </li>
+
+    @*Roles*@
+    @if (ViewBag.userRole.Contains("Human Resources") || ViewBag.userRole.Contains("Manager"))
+    {
+        <li class="menu-item">
+            <a href="/Role/Roles" class="menu-link">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-users" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                    <path d="M9 7m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0"></path>
+                    <path d="M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"></path>
+                    <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                    <path d="M21 21v-2a4 4 0 0 0 -3 -3.85"></path>
+                </svg>
+                <div>    Roles</div>
+            </a>
+        </li>
+        <li class="menu-item">
+            <a href="/HumanResources/Index" class="menu-link">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user-plus" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                    <circle cx="9" cy="7" r="4"></circle>
+                    <path d="M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"></path>
+                    <path d="M16 11h6m-3 -3v6"></path>
+                </svg>
+                <div>    Employee</div>
+            </a>
+        </li>
+    }
+
+    @*Article*@
     <li class="menu-item">
         <a href="/Article/Index" class="menu-link">
             <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-file-pencil" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-               <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-               <path d="M14 3v4a1 1 0 0 0 1 1h4"></path>
-               <path d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2z"></path>
-               <path d="M10 18l5 -5a1.414 1.414 0 0 0 -2 -2l-5 5v2h2z"></path>
+                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                <path d="M14 3v4a1 1 0 0 0 1 1h4"></path>
+                <path d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2z"></path>
+                <path d="M10 18l5 -5a1.414 1.414 0 0 0 -2 -2l-5 5v2h2z"></path>
             </svg>
-            <div data-i18n="Account">    Article</div>
+            <div>    Article</div>
         </a>
     </li>
+
+    @*News Article*@
     <li class="menu-item">
         <a href="/NewsArticle/Index" class="menu-link">
             <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-news" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -31,9 +64,11 @@
                 <line x1="8" y1="12" x2="12" y2="12"></line>
                 <line x1="8" y1="16" x2="12" y2="16"></line>
             </svg>
-            <div data-i18n="Account">    News Article</div>
+            <div>    News Article</div>
         </a>
     </li>
+
+    @*Types Of Writing*@
     <li class="menu-item">
         <a href="/TypesOfWriting/Index" class="menu-link">
             <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-align-box-bottom-center" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -43,9 +78,11 @@
                 <path d="M12 11v6"></path>
                 <path d="M15 13v4"></path>
             </svg>
-            <div data-i18n="Account">    Types Of Writing</div>
+            <div>    Types Of Writing</div>
         </a>
     </li>
+
+    @*Article Categories*@
     <li class="menu-item">
         <a href="/Category/Index" class="menu-link">
             <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-category-2" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -55,21 +92,11 @@
                 <circle cx="17" cy="17" r="3"></circle>
                 <circle cx="7" cy="7" r="3"></circle>
             </svg>
-            <div data-i18n="Account">    Article Categories</div>
+            <div>    Article Categories</div>
         </a>
     </li>
-    <li class="menu-item">
-        <a href="/Settings/Account" class="menu-link">
-            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user-exclamation" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                <circle cx="9" cy="7" r="4"></circle>
-                <path d="M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"></path>
-                <line x1="19" y1="7" x2="19" y2="10"></line>
-                <line x1="19" y1="14" x2="19" y2="14.01"></line>
-            </svg>
-            <div data-i18n="Account">    Account</div>
-        </a>
-    </li>
+
+    @*Notifications*@
     <li class="menu-item">
         <a href="/Notification/Index" class="menu-link">
             <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-bell-ringing" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -79,20 +106,11 @@
                 <path d="M21 6.727a11.05 11.05 0 0 0 -2.794 -3.727"></path>
                 <path d="M3 6.727a11.05 11.05 0 0 1 2.792 -3.727"></path>
             </svg>
-            <div data-i18n="Notifications">    Notifications</div>
+            <div>    Notifications</div>
         </a>
     </li>
-    <li class="menu-item">
-        <a href="/PlanetAPI/Index" class="menu-link">
-            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-planet-off" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-               <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-               <path d="M18.816 13.58c1.956 1.825 3.157 3.449 3.184 4.445m-3.428 .593c-2.098 -.634 -4.944 -2.03 -7.919 -3.976c-5.47 -3.579 -9.304 -7.664 -8.56 -9.123c.32 -.628 1.591 -.6 3.294 -.113"></path>
-               <path d="M7.042 7.059a7 7 0 0 0 9.908 9.89m1.581 -2.425a7 7 0 0 0 -9.057 -9.054"></path>
-               <path d="M3 3l18 18"></path>
-            </svg>
-            <div>    Planet Information</div>
-        </a>
-    </li>
+
+    @*Chats*@
     <li class="menu-item">
         <a href="/Chat/Index" class="menu-link">
             <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-messages" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -100,18 +118,66 @@
                 <path d="M21 14l-3 -3h-7a1 1 0 0 1 -1 -1v-6a1 1 0 0 1 1 -1h9a1 1 0 0 1 1 1v10"></path>
                 <path d="M14 15v2a1 1 0 0 1 -1 1h-7l-3 3v-10a1 1 0 0 1 1 -1h2"></path>
             </svg>
-            <div data-i18n="Notifications">    Chats</div>
+            <div>    Chats</div>
         </a>
     </li>
+
+    @*Reporting*@
+    @if (ViewBag.userRole.Contains("Human Resources") || ViewBag.userRole.Contains("Manager"))
+    {
+        <li class="menu-item">
+            <a href="/Report/Index" class="menu-link">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-file-description" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                    <path d="M14 3v4a1 1 0 0 0 1 1h4"></path>
+                    <path d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2z"></path>
+                    <path d="M9 17h6"></path>
+                    <path d="M9 13h6"></path>
+                </svg>
+                <div>    Reporting</div>
+            </a>
+        </li>
+    }
+
+   @* Planet Information *@
     <li class="menu-item">
-        <a href="/Role/Index" class="menu-link">
-            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user-plus" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <a href="/PlanetAPI/Index" class="menu-link">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-planet-off" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                <path d="M18.816 13.58c1.956 1.825 3.157 3.449 3.184 4.445m-3.428 .593c-2.098 -.634 -4.944 -2.03 -7.919 -3.976c-5.47 -3.579 -9.304 -7.664 -8.56 -9.123c.32 -.628 1.591 -.6 3.294 -.113"></path>
+                <path d="M7.042 7.059a7 7 0 0 0 9.908 9.89m1.581 -2.425a7 7 0 0 0 -9.057 -9.054"></path>
+                <path d="M3 3l18 18"></path>
+            </svg>
+            <div>    Planet Information</div>
+        </a>
+    </li>
+
+    @*Account*@
+    <li class="menu-item">
+        <a href="/Settings/Account" class="menu-link">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user-exclamation" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                 <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                 <circle cx="9" cy="7" r="4"></circle>
                 <path d="M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"></path>
-                <path d="M16 11h6m-3 -3v6"></path>
+                <line x1="19" y1="7" x2="19" y2="10"></line>
+                <line x1="19" y1="14" x2="19" y2="14.01"></line>
             </svg>
-            <div>    Roles</div>
+            <div>    Account</div>
         </a>
     </li>
+
+    @*Logout*@
+    <li class="menu-item">
+        <a href="/Login/Logout" class="menu-link">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-logout" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                <path d="M14 8v-2a2 2 0 0 0 -2 -2h-7a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h7a2 2 0 0 0 2 -2v-2"></path>
+                <path d="M7 12h14l-3 -3m0 6l3 -3"></path>
+            </svg>
+            <div>    Logout</div>
+        </a>
+    </li>
+
+
+
 </ul>

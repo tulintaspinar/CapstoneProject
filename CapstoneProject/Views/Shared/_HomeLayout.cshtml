@@ -1,0 +1,64 @@
+﻿@{
+    Layout = null;
+}
+<!doctype html>
+<html class="no-js" lang="en">
+@await Html.PartialAsync("/Views/Partial/HeadPartial.cshtml")
+<body>
+    <div class="main-wrapper">
+        @RenderBody()
+        <div class="mouse-cursor cursor-outer"></div>
+        <div class="mouse-cursor cursor-inner"></div>
+        <div id="my_switcher" class="my_switcher">
+            <ul>
+                <li>
+                    <a href="javascript: void(0);" data-theme="light" class="setColor light">
+                        <span title="Light Mode">Light</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript: void(0);" data-theme="dark" class="setColor dark">
+                        <span title="Dark Mode">Dark</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Start Header -->
+        @await Html.PartialAsync("/Views/Partial/HeaderPartial.cshtml")
+        <!-- Start Header -->
+
+        <!-- Navbar  -->
+        @await Html.PartialAsync("/Views/Partial/NavbarPartial.cshtml")
+        <!-- End Navbar  -->
+
+        <!-- Start Banner Area -->
+        @await Html.PartialAsync("/Views/Partial/BannerPartial.cshtml")
+        <!-- End Banner Area -->
+
+        <!-- More Featured Posts -->
+        @await Html.PartialAsync("/Views/Partial/MorePostsPartial.cshtml")
+        <!-- End More Featured Posts -->
+
+        <!-- Start Tab Area Innovation Tech -->
+        @await Html.PartialAsync("/Views/Partial/InnovationTechPartial.cshtml")
+        <!-- End Tab Area  -->
+
+        <!-- Start Categories List  -->
+        @await Html.PartialAsync("/Views/Partial/CategoriesPartial.cshtml")
+        <!-- Start Categories List  -->
+
+        <!-- Start Trending Post -->
+        @await Html.PartialAsync("/Views/Partial/MostPopularPartial.cshtml")
+        <!-- End Trending Post  -->
+
+        <!-- Start Post List  -->
+        @await Html.PartialAsync("/Views/Partial/PostListPartial.cshtml")
+        <!-- End Post List  -->
+
+        <!-- Start Footer Area  -->
+        @await Html.PartialAsync("/Views/Partial/FooterPartial.cshtml")
+    </div>
+    @await Html.PartialAsync("/Views/Partial/ScriptPartial.cshtml")
+</body>
+</html>

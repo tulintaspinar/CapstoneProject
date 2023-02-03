@@ -50,7 +50,8 @@ namespace CapstoneProject.Controllers
                 {
                     _userActivityTimelineService.Add(new UserActivityTimeline()
                     {
-                        TypeOfWritingName="Register",
+                        WriterName= register.UserName,
+                        TypeOfWritingName ="Register",
                         Date=DateTime.Now
                     });
 

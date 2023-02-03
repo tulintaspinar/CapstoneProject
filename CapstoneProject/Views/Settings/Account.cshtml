@@ -52,149 +52,161 @@
 
     <!-- User Profile Content -->
     <div class="row">
-      <div class="col-xl-4 col-lg-5 col-md-5">
-        <!-- About User -->
-        <div class="card mb-4">
-          <div class="card-body">
-            <small class="card-text text-uppercase">About</small>
-            <ul class="list-unstyled mb-4 mt-3">
-              <li class="d-flex align-items-center mb-3">
+
+        <div class="col-xl-4 col-lg-5 col-md-5">
+            <!-- About User -->
+            <div class="card mb-4">
+              <div class="card-body">
+                <small class="card-text text-uppercase">About</small>
+                <ul class="list-unstyled mb-4 mt-3">
+                  <li class="d-flex align-items-center mb-3">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-point" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                    <circle cx="12" cy="12" r="4"></circle>
+                                </svg>
+                                <span class="fw-bold mx-2">Full Name:</span> <span>@Model.Name  @Model.Surname</span>
+                  </li>
+                  <li class="d-flex align-items-center mb-3">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-point" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                    <circle cx="12" cy="12" r="4"></circle>
+                                </svg><span class="fw-bold mx-2">User Name:</span> <span>@Model.UserName</span>
+                  </li>
+                  <li class="d-flex align-items-center mb-3">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-point" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                    <circle cx="12" cy="12" r="4"></circle>
+                                </svg><span class="fw-bold mx-2">Age:</span> <span>@Model.Age</span>
+                  </li>
+                  <li class="d-flex align-items-center mb-3">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-point" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                    <circle cx="12" cy="12" r="4"></circle>
+                                </svg><span class="fw-bold mx-2">Job:</span> <span>@Model.Job</span>
+                  </li>
+                </ul>
+                <small class="card-text text-uppercase">Contacts</small>
+                <ul class="list-unstyled mb-4 mt-3">
+                  <li class="d-flex align-items-center mb-3">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-point" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                    <circle cx="12" cy="12" r="4"></circle>
+                                </svg><span class="fw-bold mx-2">Phone:</span> <span>@Model.Phone</span>
+                  </li>
+                  <li class="d-flex align-items-center mb-3">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-point" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                    <circle cx="12" cy="12" r="4"></circle>
+                                </svg><span class="fw-bold mx-2">Email:</span> <span>@Model.Email</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <!--/ About User -->
+        </div>
+        <div class="col-xl-8 col-lg-7 col-md-7">
+            <!-- Activity Timeline -->
+            <div class="card card-action mb-6">
+              <div class="card-header align-items-center">
+                <h5 class="card-action-title mb-0">Activity Timeline</h5>
+              </div>
+              <div class="card-body pb-0">
+                <ul class="timeline ms-1 mb-1">
+                    @foreach (var item in ViewBag.ActivityTimeline)
+                    {
+                        if (item.TypeOfWritingName=="Register"){
+                                    <li class="timeline-item timeline-item-transparent">
+                                        <span class="timeline-point timeline-point-danger"></span>
+                                        <div class="timeline-event">
+                                            <div class="timeline-header">
+                                                <h6 class="mb-0">@item.TypeOfWritingName</h6>
+                                                <small class="text-muted">@item.Date.ToShortDateString()</small>
+                                            </div>
+                                        </div>
+                                    </li>
+                        }
+                        else if(item.TypeOfWritingName=="Article Added"){
+                                    <li class="timeline-item timeline-item-transparent">
+                                        <span class="timeline-point timeline-point-info"></span>
+                                        <div class="timeline-event">
+                                            <div class="timeline-header">
+                                                <h6 class="mb-0">@item.TypeOfWritingName</h6>
+                                                <small class="text-muted">@item.Date.ToShortDateString()</small>
+                                            </div>
+                                        </div>
+                                    </li>
+                        }
+                        else if (item.TypeOfWritingName=="News article Added"){
+                                    <li class="timeline-item timeline-item-transparent">
+                                        <span class="timeline-point timeline-point-success"></span>
+                                        <div class="timeline-event">
+                                            <div class="timeline-header">
+                                                <h6 class="mb-0">@item.TypeOfWritingName</h6>
+                                                <small class="text-muted">@item.Date.ToShortDateString()</small>
+                                            </div>
+                                        </div>
+                                    </li>
+                        }
+                        else{
+                                    <li class="timeline-item timeline-item-transparent">
+                                        <span class="timeline-point timeline-point-warning"></span>
+                                        <div class="timeline-event">
+                                            <div class="timeline-header">
+                                                <h6 class="mb-0">@item.TypeOfWritingName</h6>
+                                                <small class="text-muted">@item.Date.ToShortDateString()</small>
+                                            </div>
+                                        </div>
+                                    </li>
+                        }
+                    }
+                </ul>
+              </div>
+            </div>
+            <!--/ Activity Timeline -->
+            <div class="row">
+            </div>           
+        </div>
+        
+        <div class="col-xl-12 col-lg-12 col-md-12">
+            <!-- Profile Overview -->
+            <div class="card mb-4">
+                <div class="card-body">
+                    <p class="card-text text-uppercase">Overview</p>
+                    <ul class="list-unstyled mb-0">
+                        <li class="d-flex align-items-center mb-3">
                             <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-point" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                 <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                                 <circle cx="12" cy="12" r="4"></circle>
                             </svg>
-                            <span class="fw-bold mx-2">Full Name:</span> <span>@Model.Name  @Model.Surname</span>
-              </li>
-              <li class="d-flex align-items-center mb-3">
+                            <span class="fw-bold mx-2">Total Count Posts:</span> 
+                            <span>@ViewBag.TotalCount</span>
+                            <span><a href="" style="text-align:right;" class="btn btn-outline-primary">Export</a></span>
+                        </li>
+                        <li class="d-flex align-items-center mb-3">
                             <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-point" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                 <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                                 <circle cx="12" cy="12" r="4"></circle>
-                            </svg><span class="fw-bold mx-2">User Name:</span> <span>@Model.UserName</span>
-              </li>
-              <li class="d-flex align-items-center mb-3">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-point" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                <circle cx="12" cy="12" r="4"></circle>
-                            </svg><span class="fw-bold mx-2">Age:</span> <span>@Model.Age</span>
-              </li>
-              <li class="d-flex align-items-center mb-3">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-point" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                <circle cx="12" cy="12" r="4"></circle>
-                            </svg><span class="fw-bold mx-2">Job:</span> <span>@Model.Job</span>
-              </li>
-            </ul>
-            <small class="card-text text-uppercase">Contacts</small>
-            <ul class="list-unstyled mb-4 mt-3">
-              <li class="d-flex align-items-center mb-3">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-point" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                <circle cx="12" cy="12" r="4"></circle>
-                            </svg><span class="fw-bold mx-2">Phone:</span> <span>@Model.Phone</span>
-              </li>
-              <li class="d-flex align-items-center mb-3">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-point" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                <circle cx="12" cy="12" r="4"></circle>
-                            </svg><span class="fw-bold mx-2">Email:</span> <span>@Model.Email</span>
-              </li>
-            </ul>
-          </div>
-        </div>
-        <!--/ About User -->
+                            </svg>
+                            <span class="fw-bold mx-2">Total Articles Count:</span> 
+                            <span>@ViewBag.ArticleCount</span>
+                            <span><a href="" style="text-align:right;" class="btn btn-outline-primary">Export</a></span>
 
-        <!-- Profile Overview -->
-        <div class="card mb-4">
-          <div class="card-body">
-            <p class="card-text text-uppercase">Overview</p>
-            <ul class="list-unstyled mb-0">
-              <li class="d-flex align-items-center mb-3">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-point" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        </li>
+                        <li class="d-flex align-items-center mb-3">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-point" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                 <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                                 <circle cx="12" cy="12" r="4"></circle>
-                  </svg><span class="fw-bold mx-2">Total Count Posts:</span> <span>@ViewBag.TotalCount</span>
-              </li>
-              <li class="d-flex align-items-center mb-3">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-point" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                      <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                      <circle cx="12" cy="12" r="4"></circle>
-                  </svg><span class="fw-bold mx-2">Total Articles Count:</span> <span>@ViewBag.ArticleCount</span>
-              </li>
-              <li class="d-flex align-items-center mb-3">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-point" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                      <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                      <circle cx="12" cy="12" r="4"></circle>
-                  </svg><span class="fw-bold mx-2">Total News Articles Count:</span> <span>@ViewBag.NewsArticleCount</span>
-              </li>
-                        
-            </ul>
-          </div>
-        </div>
-        <!--/ Profile Overview -->
-      </div>
+                            </svg>
+                            <span class="fw-bold mx-2">Total News Articles Count:</span> 
+                            <span>@ViewBag.NewsArticleCount</span>
+                            <span><a href="" style="text-align:right;" class="btn btn-outline-primary">Export</a></span>
+                        </li>
 
-      <div class="col-xl-8 col-lg-7 col-md-7">
-        <!-- Activity Timeline -->
-        <div class="card card-action mb-6">
-          <div class="card-header align-items-center">
-            <h5 class="card-action-title mb-0">Activity Timeline</h5>
-          </div>
-          <div class="card-body pb-0">
-            <ul class="timeline ms-1 mb-1">
-                @foreach (var item in ViewBag.ActivityTimeline)
-                {
-                    if (item.TypeOfWritingName=="Register"){
-                                <li class="timeline-item timeline-item-transparent">
-                                    <span class="timeline-point timeline-point-danger"></span>
-                                    <div class="timeline-event">
-                                        <div class="timeline-header">
-                                            <h6 class="mb-0">@item.TypeOfWritingName</h6>
-                                            <small class="text-muted">@item.Date.ToShortDateString()</small>
-                                        </div>
-                                    </div>
-                                </li>
-                    }
-                    else if(item.TypeOfWritingName=="Article Added"){
-                                <li class="timeline-item timeline-item-transparent">
-                                    <span class="timeline-point timeline-point-info"></span>
-                                    <div class="timeline-event">
-                                        <div class="timeline-header">
-                                            <h6 class="mb-0">@item.TypeOfWritingName</h6>
-                                            <small class="text-muted">@item.Date.ToShortDateString()</small>
-                                        </div>
-                                    </div>
-                                </li>
-                    }
-                    else if (item.TypeOfWritingName=="News article Added"){
-                                <li class="timeline-item timeline-item-transparent">
-                                    <span class="timeline-point timeline-point-success"></span>
-                                    <div class="timeline-event">
-                                        <div class="timeline-header">
-                                            <h6 class="mb-0">@item.TypeOfWritingName</h6>
-                                            <small class="text-muted">@item.Date.ToShortDateString()</small>
-                                        </div>
-                                    </div>
-                                </li>
-                    }
-                    else{
-                                <li class="timeline-item timeline-item-transparent">
-                                    <span class="timeline-point timeline-point-warning"></span>
-                                    <div class="timeline-event">
-                                        <div class="timeline-header">
-                                            <h6 class="mb-0">@item.TypeOfWritingName</h6>
-                                            <small class="text-muted">@item.Date.ToShortDateString()</small>
-                                        </div>
-                                    </div>
-                                </li>
-                    }
-                }
-            </ul>
-          </div>
+                    </ul>
+                </div>
+            </div>
+            <!--/ Profile Overview -->
         </div>
-        <!--/ Activity Timeline -->
-        <div class="row">
-        </div>
-      </div>
     </div>    
     <!-- /User Profile Content -->
 </div>
