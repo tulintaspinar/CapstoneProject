@@ -23,7 +23,7 @@ namespace CapstoneProject.Controllers
             return View();
         }
 
-        public IActionResult TotalEmployee() 
+        public IActionResult TotalEmployee()
         {
             MemoryStream workStream = new MemoryStream();
 
@@ -34,7 +34,7 @@ namespace CapstoneProject.Controllers
             PdfWriter.GetInstance(doc, workStream).CloseStream = false;
             doc.Open();
             BaseFont bf = BaseFont.CreateFont(BaseFont.TIMES_ROMAN, BaseFont.CP1252, BaseFont.NOT_EMBEDDED);
-            iTextSharp.text.Font fontInvoice = new iTextSharp.text.Font(bf, 20, iTextSharp.text.Font.NORMAL);
+            Font fontInvoice = new Font(bf, 20, Font.NORMAL);
             Paragraph paragraph = new Paragraph("EMPLOYEE LIST", fontInvoice);
             paragraph.Alignment = Element.ALIGN_CENTER;
             doc.Add(paragraph);
@@ -52,7 +52,7 @@ namespace CapstoneProject.Controllers
         protected PdfPTable Add_Content_To_PDF(PdfPTable tableLayout)
         {
             var users = _userManager.Users.ToList();
-            float[] headers = { 40, 15, 20,15,10,10,15 }; //Header Widths  
+            float[] headers = { 40, 15, 20, 15, 10, 10, 15 }; //Header Widths  
             tableLayout.SetWidths(headers); //Set the pdf headers  
             tableLayout.WidthPercentage = 100; //Set the PDF File witdh percentage  
             tableLayout.HeaderRows = 1;
@@ -71,7 +71,7 @@ namespace CapstoneProject.Controllers
                 if (count >= 1)
                 {
                     //Add body  
-                    AddCellToBody(tableLayout, cust.Name+" "+cust.Surname, count);
+                    AddCellToBody(tableLayout, cust.Name + " " + cust.Surname, count);
                     AddCellToBody(tableLayout, cust.PhoneNumber.ToString(), count);
                     AddCellToBody(tableLayout, cust.Email.ToString(), count);
                     AddCellToBody(tableLayout, cust.Job.ToString(), count);
@@ -89,27 +89,27 @@ namespace CapstoneProject.Controllers
             {
                 HorizontalAlignment = Element.ALIGN_LEFT,
                 Padding = 8,
-                BackgroundColor = new iTextSharp.text.BaseColor(255, 255, 255)
+                BackgroundColor = new BaseColor(255, 255, 255)
             });
         }
         private static void AddCellToBody(PdfPTable tableLayout, string cellText, int count)
         {
             if (count % 2 == 0)
             {
-                tableLayout.AddCell(new PdfPCell(new Phrase(cellText, new Font(Font.FontFamily.HELVETICA, 8, 1, iTextSharp.text.BaseColor.BLACK)))
+                tableLayout.AddCell(new PdfPCell(new Phrase(cellText, new Font(Font.FontFamily.HELVETICA, 8, 1, BaseColor.BLACK)))
                 {
                     HorizontalAlignment = Element.ALIGN_LEFT,
                     Padding = 8,
-                    BackgroundColor = new iTextSharp.text.BaseColor(255, 255, 255)
+                    BackgroundColor = new BaseColor(255, 255, 255)
                 });
             }
             else
             {
-                tableLayout.AddCell(new PdfPCell(new Phrase(cellText, new Font(Font.FontFamily.HELVETICA, 8, 1, iTextSharp.text.BaseColor.BLACK)))
+                tableLayout.AddCell(new PdfPCell(new Phrase(cellText, new Font(Font.FontFamily.HELVETICA, 8, 1, BaseColor.BLACK)))
                 {
                     HorizontalAlignment = Element.ALIGN_LEFT,
                     Padding = 8,
-                    BackgroundColor = new iTextSharp.text.BaseColor(211, 211, 211)
+                    BackgroundColor = new BaseColor(211, 211, 211)
                 });
             }
         }

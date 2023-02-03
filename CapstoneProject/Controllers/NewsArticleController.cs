@@ -36,7 +36,7 @@ namespace CapstoneProject.Controllers
             List<string> categories = new List<string>();
             foreach (var item in newsArticleCategories)
             {
-                if(!categories.Equals(item.CategoryName))
+                if (!categories.Equals(item.CategoryName))
                     categories.Add(item.CategoryName);
             }
             ViewBag.categories = categories;
@@ -62,11 +62,11 @@ namespace CapstoneProject.Controllers
 
                 _newsArticleService.TAdd(new NewsArticle()
                 {
-                    Title=newsArticle.Title,
-                    Description=newsArticle.Description,
-                    Date=DateTime.Now,
-                    WriterName=User.Identity.Name,
-                    ImageUrl=newsArticle.ImageUrl,
+                    Title = newsArticle.Title,
+                    Description = newsArticle.Description,
+                    Date = DateTime.Now,
+                    WriterName = User.Identity.Name,
+                    ImageUrl = newsArticle.ImageUrl,
                     ArticleCategoryID = categoryID
                 });
                 _userActivityTimelineService.Add(new UserActivityTimeline()
@@ -76,7 +76,7 @@ namespace CapstoneProject.Controllers
                 });
                 return RedirectToAction("Index");
             }
-            return View();  
+            return View();
         }
 
         public IActionResult Delete(int id)

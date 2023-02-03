@@ -55,7 +55,7 @@ namespace CapstoneProject.Controllers
                 {
                     var extension = Path.GetExtension(article.Image.FileName);
                     var newImageName = Guid.NewGuid() + extension;
-                    var location = Path.Combine(Directory.GetCurrentDirectory()+"/wwwroot/IMAGES/ArticleImages/",newImageName);
+                    var location = Path.Combine(Directory.GetCurrentDirectory() + "/wwwroot/IMAGES/ArticleImages/", newImageName);
                     var stream = new FileStream(location, FileMode.Create);
                     article.Image.CopyTo(stream);
                     article.ImageUrl = newImageName;
@@ -67,13 +67,13 @@ namespace CapstoneProject.Controllers
                     Title = article.Title,
                     Description = article.Description,
                     WriterName = User.Identity.Name,
-                    ImageUrl=article.ImageUrl,
-                    ArticleCategoryID=categoryID
+                    ImageUrl = article.ImageUrl,
+                    ArticleCategoryID = categoryID
                 });
                 _userActivityTimelineService.Add(new UserActivityTimeline()
                 {
-                    TypeOfWritingName="Article Added",
-                    Date= DateTime.Now
+                    TypeOfWritingName = "Article Added",
+                    Date = DateTime.Now
                 });
                 return RedirectToAction("Index");
             }

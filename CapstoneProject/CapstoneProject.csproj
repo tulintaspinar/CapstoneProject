@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.0" />
     <PackageReference Include="FluentValidation.AspNetCore" Version="11.2.2" />
     <PackageReference Include="iTextSharp" Version="5.5.13.3" />
     <PackageReference Include="MailKit" Version="3.4.3" />
@@ -32,6 +33,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Areas\Homepage\Data\" />
+    <Folder Include="Areas\Homepage\Models\" />
     <Folder Include="wwwroot\IMAGES\ArticleImages\" />
     <Folder Include="wwwroot\IMAGES\UserImages\" />
     <Folder Include="wwwroot\IMAGES\NewsArticleImages\" />

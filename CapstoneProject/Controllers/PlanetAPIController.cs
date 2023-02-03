@@ -32,7 +32,7 @@ namespace CapstoneProject.Controllers
                 var body = await response.Content.ReadAsStringAsync();
                 planet = JsonConvert.DeserializeObject<List<PlanetInfoViewList>>(body);
             }
-            return View(planet.OrderBy(x=>x.planetOrder).ToList());
+            return View(planet.OrderBy(x => x.planetOrder).ToList());
         }
     }
 }

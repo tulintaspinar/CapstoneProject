@@ -31,15 +31,15 @@ namespace CapstoneProject.Controllers
             {
                 typesOfWriting.Add(item.Name);
             }
-            ViewBag.typesOfWriting=typesOfWriting;
+            ViewBag.typesOfWriting = typesOfWriting;
             return View();
         }
         [HttpPost]
         public IActionResult Add(ArticleCategoryAddDTO articleCategories)
         {
-            if(ModelState.IsValid)
+            if (ModelState.IsValid)
             {
-                var typesOfWritingId = _typesOfWritingService.TGetList().Where(x=>x.Name==articleCategories.TypesOfWritingName).FirstOrDefault().TypesOfWritingID;
+                var typesOfWritingId = _typesOfWritingService.TGetList().Where(x => x.Name == articleCategories.TypesOfWritingName).FirstOrDefault().TypesOfWritingID;
                 _articleCategoryService.TAdd(new ArticleCategory()
                 {
                     CategoryName = articleCategories.CategoryName,
@@ -64,8 +64,8 @@ namespace CapstoneProject.Controllers
             {
                 ID = list.TypesOfWritingID,
                 CategoryName = list.CategoryName,
-                TypesOfWritingName= typesOfWritingId
-                
+                TypesOfWritingName = typesOfWritingId
+
             };
             //dropdownlist için
             List<string> typesOfWriting = new List<string>();
@@ -85,7 +85,7 @@ namespace CapstoneProject.Controllers
                 var typesOfWritingId = _typesOfWritingService.TGetList().Where(x => x.Name == article.TypesOfWritingName).FirstOrDefault().TypesOfWritingID;
                 _articleCategoryService.TUpdate(new ArticleCategory()
                 {
-                    ArticleCategoryID=article.ID,
+                    ArticleCategoryID = article.ID,
                     CategoryName = article.CategoryName,
                     TypesOfWritingID = typesOfWritingId
                 });

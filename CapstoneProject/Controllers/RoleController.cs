@@ -132,7 +132,7 @@ namespace CapstoneProject.Controllers
                     await _userManager.RemoveFromRoleAsync(user, item.Name);
                 }
             }
-            return RedirectToAction("Index","HumanResources");
+            return RedirectToAction("Index", "HumanResources");
         }
     }
 }

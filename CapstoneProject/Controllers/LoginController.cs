@@ -26,7 +26,7 @@ namespace CapstoneProject.Controllers
         public async Task<IActionResult> Index(AppUser signIn)
         {
             var result = await _signInManager.PasswordSignInAsync(signIn.UserName, signIn.PasswordHash, true, true);
-            if(result.Succeeded)
+            if (result.Succeeded)
             {
                 return RedirectToAction("Index", "Dashboard");
             }

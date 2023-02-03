@@ -26,7 +26,7 @@ namespace CapstoneProject.Controllers
         [HttpPost]
         public IActionResult Add(TypesOfWritingAddDTO typesOfwriting)
         {
-            if(ModelState.IsValid)
+            if (ModelState.IsValid)
             {
                 _typesOfWritingService.TAdd(new TypesOfWriting()
                 {

@@ -24,6 +24,6 @@ namespace CapstoneProject.Controllers
             return View(users);
         }
 
-       
+
     }
 }

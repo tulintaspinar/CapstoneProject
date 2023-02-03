@@ -8,6 +8,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CapstoneProject_BusinessLayer.CQRS.Handlers.WriterHandlers;
+using CapstoneProject_BusinessLayer.CQRS.Handlers.ArticleHandlers;
+using CapstoneProject_BusinessLayer.CQRS.Handlers.NewsArticleHandlers;
+using CapstoneProject_BusinessLayer.CQRS.Handlers.ArticlecategoriesHandlers;
 
 namespace CapstoneProject_BusinessLayer.DIContainer
 {
@@ -32,6 +36,15 @@ namespace CapstoneProject_BusinessLayer.DIContainer
 
             services.AddScoped<IUserActivityTimelineDal, EfUserActivityTimelineDal>();
             services.AddScoped<IUserActivityTimelineService,UserActivityTimelineManager>();
+
+            //CQRS
+            services.AddScoped<GetLastThreeArticleQueryHandler>();
+            services.AddScoped<GetTwoArticleQueryHandler>();
+            services.AddScoped<GetFiveArticleCategoriesQueryHandler>();
+            services.AddScoped<GetThreeNewsArticleCategoriesQueryHandler>();
+            services.AddScoped<GetNewsArticleQueryHandler>();
+            services.AddScoped<GetFiveNewsArticleQueryHandler>();
+            services.AddScoped<GetAllWritersInformationQueryHandler>();
         }
     }
 

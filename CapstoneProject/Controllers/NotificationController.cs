@@ -36,11 +36,11 @@ namespace CapstoneProject.Controllers
             var user = await _userManager.FindByNameAsync(User.Identity.Name);
             _notificationService.TAdd(new Notification()
             {
-                Title= notificationAddDTO.Title,
-                Description= notificationAddDTO.Description,
-                Status="Not Read",
-                Date=DateTime.Now,
-                UserId=user.Id
+                Title = notificationAddDTO.Title,
+                Description = notificationAddDTO.Description,
+                Status = "Not Read",
+                Date = DateTime.Now,
+                UserId = user.Id
             });
             return RedirectToAction("Index");
         }
@@ -54,7 +54,7 @@ namespace CapstoneProject.Controllers
             {
                 Title = value.Title,
                 Description = value.Description,
-                Id=value.NotificationId
+                Id = value.NotificationId
             });
         }
 

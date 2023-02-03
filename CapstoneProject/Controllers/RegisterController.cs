@@ -38,24 +38,24 @@ namespace CapstoneProject.Controllers
                     Name = register.Name,
                     Surname = register.Surname,
                     Email = register.Email,
-                    Age=register.Age,
+                    Age = register.Age,
                     UserName = register.UserName,
                     NormalizedUserName = register.UserName.ToUpper(),
                     JoinDate = DateTime.Now,
-                    Job=register.Job,
+                    Job = register.Job,
                     EmailConfirmedCode = new Random().Next(100000, 999999).ToString()
                 };
                 var result = await _userManager.CreateAsync(appUser, register.Password);
-                if(result.Succeeded)
+                if (result.Succeeded)
                 {
                     _userActivityTimelineService.Add(new UserActivityTimeline()
                     {
-                        WriterName= register.UserName,
-                        TypeOfWritingName ="Register",
-                        Date=DateTime.Now
+                        WriterName = register.UserName,
+                        TypeOfWritingName = "Register",
+                        Date = DateTime.Now
                     });
 
-                    SendEmail(appUser.EmailConfirmedCode,register.Email);
+                    SendEmail(appUser.EmailConfirmedCode, register.Email);
 
                     return RedirectToAction("EmailConfirm");
                 }
@@ -93,7 +93,7 @@ namespace CapstoneProject.Controllers
         {
             return View();
         }
-        
+
         [HttpPost]
         public async Task<IActionResult> ForgotPasswordCode(AppUser appUser)
         {
@@ -103,14 +103,14 @@ namespace CapstoneProject.Controllers
                 SendEmail(emailCode, appUser.Email);
 
                 var user = await _userManager.FindByEmailAsync(appUser.Email);
-                user.ForgotPasswordCode= emailCode;
+                user.ForgotPasswordCode = emailCode;
                 await _userManager.UpdateAsync(user);
 
                 return RedirectToAction("ForgotPassword");
             }
             return View();
         }
-        
+
         [HttpGet]
         public IActionResult ForgotPassword()
         {
@@ -124,11 +124,11 @@ namespace CapstoneProject.Controllers
             {
                 user.PasswordHash = _userManager.PasswordHasher.HashPassword(user, forgotPasswordDTO.Password);
                 await _userManager.UpdateAsync(user);
-                return RedirectToAction("Index","Login");
+                return RedirectToAction("Index", "Login");
             }
             return View();
         }
-        public void SendEmail(string emailcode,string email)
+        public void SendEmail(string emailcode, string email)
         {
             MimeMessage mimeMessage = new MimeMessage();
 

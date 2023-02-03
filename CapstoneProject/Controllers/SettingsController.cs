@@ -41,12 +41,18 @@ namespace CapstoneProject.Controllers
             ViewBag.NewsArticleCount = newsArticles.Count;
             ViewBag.TotalCount = articles.Count + newsArticles.Count;
 
-            ViewBag.ActivityTimeline = _userActivityTimelineService.GetAllByUserName(user.UserName).OrderByDescending(x=>x.Date);
+            ViewBag.ActivityTimeline = _userActivityTimelineService.GetAllByUserName(user.UserName).OrderByDescending(x => x.Date);
 
-            
-            return View(new UserDTO() 
-            { 
-                Name=user.Name,Surname=user.Surname,Email=user.Email,UserName=user.UserName,Phone=user.PhoneNumber,Age=user.Age,Job=user.Job
+
+            return View(new UserDTO()
+            {
+                Name = user.Name,
+                Surname = user.Surname,
+                Email = user.Email,
+                UserName = user.UserName,
+                Phone = user.PhoneNumber,
+                Age = user.Age,
+                Job = user.Job
             });
         }
         [HttpGet]
@@ -54,7 +60,7 @@ namespace CapstoneProject.Controllers
         {
             var user = await _userManager.FindByNameAsync(User.Identity.Name);
             ViewBag.UserImage = user.Image;
-            return View(new UserEditDTO() { Name=user.Name,Surname=user.Surname,Email=user.Email,Phone=user.PhoneNumber,UserName=user.UserName});
+            return View(new UserEditDTO() { Name = user.Name, Surname = user.Surname, Email = user.Email, Phone = user.PhoneNumber, UserName = user.UserName });
         }
         [HttpPost]
         public async Task<IActionResult> Setting(UserEditDTO userEditDTO)
@@ -90,7 +96,7 @@ namespace CapstoneProject.Controllers
                     var location = Path.Combine(Directory.GetCurrentDirectory() + "/wwwroot/IMAGES/UserImages/", newImageName);
                     var stream = new FileStream(location, FileMode.Create);
                     userEditDTO.Image.CopyTo(stream);
-                    
+
                     user.Image = newImageName;
 
                     var result = await _userManager.UpdateAsync(user);
