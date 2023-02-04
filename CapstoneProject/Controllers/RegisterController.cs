@@ -1,10 +1,13 @@
 ﻿using CapstoneProject_BusinessLayer.Abstract;
+using CapstoneProject_BusinessLayer.ValidationRules;
 using CapstoneProject_DTOs.DTOs;
 using CapstoneProject_EntityLayer.Concrete;
+using FluentValidation.Results;
 using MailKit.Net.Smtp;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using MimeKit;
 using System;
 using System.Threading.Tasks;
@@ -31,7 +34,10 @@ namespace CapstoneProject.Controllers
         [HttpPost]
         public async Task<IActionResult> Index(RegisterDTO register)
         {
-            if (ModelState.IsValid)
+            RegisterValidator rules = new RegisterValidator();
+            ValidationResult result = rules.Validate(register);
+
+            if (result.IsValid)
             {
                 AppUser appUser = new AppUser()
                 {
@@ -45,8 +51,8 @@ namespace CapstoneProject.Controllers
                     Job = register.Job,
                     EmailConfirmedCode = new Random().Next(100000, 999999).ToString()
                 };
-                var result = await _userManager.CreateAsync(appUser, register.Password);
-                if (result.Succeeded)
+                var success = await _userManager.CreateAsync(appUser, register.Password);
+                if (success.Succeeded)
                 {
                     _userActivityTimelineService.Add(new UserActivityTimeline()
                     {
@@ -59,12 +65,12 @@ namespace CapstoneProject.Controllers
 
                     return RedirectToAction("EmailConfirm");
                 }
-                else
+            }
+            else
+            {
+                foreach (var item in result.Errors)
                 {
-                    foreach (var item in result.Errors)
-                    {
-                        ModelState.AddModelError("", item.Description);
-                    }
+                    ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
                 }
             }
             return View();
@@ -84,6 +90,10 @@ namespace CapstoneProject.Controllers
                 user.EmailConfirmed = true;
                 await _userManager.UpdateAsync(user);
                 return RedirectToAction("Index", "Login");
+            }
+            else
+            {
+                ViewBag.error = "Lütfen girilen bilgileri kontrol edip tekrar deneyiniz!";
             }
             return View();
         }
@@ -146,7 +156,7 @@ namespace CapstoneProject.Controllers
 
             SmtpClient smtp = new SmtpClient(); //SİMPLE MAİL TRANSFER PROTOCOL
             smtp.Connect("smtp.gmail.com", 587, false);
-            smtp.Authenticate("mailgonderme3@gmail.com", "fwoqmvrksyrjspxv");
+            smtp.Authenticate("mailgonderme3@gmail.com", "ctzzbuomrtybukkl");
             smtp.Send(mimeMessage);
             smtp.Disconnect(true);
         }

@@ -1,5 +1,7 @@
-﻿using CapstoneProject_DTOs.DTOs;
+﻿using CapstoneProject_BusinessLayer.ValidationRules;
+using CapstoneProject_DTOs.DTOs;
 using CapstoneProject_EntityLayer.Concrete;
+using FluentValidation.Results;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -25,10 +27,23 @@ namespace CapstoneProject.Controllers
         [HttpPost]
         public async Task<IActionResult> Index(AppUser signIn)
         {
-            var result = await _signInManager.PasswordSignInAsync(signIn.UserName, signIn.PasswordHash, true, true);
-            if (result.Succeeded)
+            LoginValidator rules = new LoginValidator();
+            ValidationResult result = rules.Validate(signIn);
+
+            if(result.IsValid)
             {
-                return RedirectToAction("Index", "AdminDashboard");
+                var success = await _signInManager.PasswordSignInAsync(signIn.UserName, signIn.PasswordHash, true, true);
+                if (success.Succeeded)
+                {
+                    return RedirectToAction("Index", "AdminDashboard");
+                }
+            }
+            else
+            {
+                foreach (var item in result.Errors)
+                {
+                    ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
+                }
             }
             return View();
         }

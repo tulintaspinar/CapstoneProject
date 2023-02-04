@@ -11,42 +11,41 @@
                 <h5 class="card-header">ADD ARTICLE</h5>
                 <div class="card-body">
                     <div class="mb-3 row">
-                        <label for="html5-text-input" class="col-md-2 col-form-label">Title</label>
+                        <label class="col-md-2 col-form-label">Title</label>
                         <div class="col-md-10">
                             <input asp-for="Title" class="form-control" type="text" placeholder="Vuexy">
                             <span class="text-danger" asp-validation-for="Title"></span>
                         </div>
                     </div>
                     <div class="mb-3 row">
-                        <label for="html5-search-input" class="col-md-2 col-form-label">Description</label>
+                        <label class="col-md-2 col-form-label">Description</label>
                         <div class="col-md-10">
                             <textarea asp-for="Description" class="form-control" rows="10" cols="6" value="Description"></textarea>
-                            <span class="text-danger" asp-validation-for="Description"></span>
                         </div>
+                        <span class="text-danger" asp-validation-for="Description"></span>
                     </div>
                     <div class="mb-3 row">
-                        <label class="col-md-2 col-form-label" for="basic-default-category">Category</label>
+                        <label class="col-md-2 col-form-label">Category</label>
                         <div class="col-md-10">
-                            <select class="form-select" id="basic-default-category" required="" asp-for="ArticleCategoryName" asp-items="new SelectList((ViewBag.categories))">
+                            <select class="form-select" asp-for="ArticleCategoryName" asp-items="new SelectList((ViewBag.categories))">
                                 <option value="">---Select---</option>
                             </select>
                         </div>
                     </div>
                     <div class="mb-3 row">
-                        <h5 class="card-header">File</h5>
-                        <div class="card-body">
+                        <label for="col-md-2 col-form-label" class="form-label">Please choose file</label>
+                        <div class="col-md-10">
                             <div class="mb-3">
-                                <label for="formFile" class="form-label">Please choose file</label>
-                                <input asp-for="Image" class="form-control" type="file" id="formFile">
+                                <input asp-for="Image" class="form-control" type="file">
+                                <span asp-validation-for="Image" class="text-danger"></span>
                             </div>
                         </div>
                     </div>
                     <div class="mb-3 row">
-                        <button type="submit" class="btn btn-outline-info">ADD NEW ARTİCLE</button>
+                        <button class="btn btn-outline-info">ADD NEW ARTİCLE</button>
                     </div>
                 </div>
             </div>
-
         </form>
     </div>
 </div>

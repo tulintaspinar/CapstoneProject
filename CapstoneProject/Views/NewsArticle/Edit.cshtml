@@ -14,25 +14,21 @@
                         <input type="hidden" asp-for="ID" />
                         <div class="mb-3">
                             <label class="form-label" for="basic-default-name">Title</label>
-                            <input type="text" asp-for="Title" class="form-control" placeholder="Enter title" required="">
+                            <input type="text" asp-for="Title" class="form-control" placeholder="Enter title">
                         </div>
+                        <span asp-validation-for="Title" class="text-danger"></span>
                         <div class="mb-3">
                             <label class="form-label" for="basic-default-name">Description</label>
-                            <textarea type="text" asp-for="Description" class="form-control" placeholder="Enter description" required=""></textarea>
+                            <textarea type="text" asp-for="Description" class="form-control" placeholder="Enter description" required=""></textarea>                            
                         </div>
-                        <div class="mb-3">
-                            <label class="form-label" for="basic-default-category">Category</label>
-                            <select class="form-select" id="basic-default-category" required="" asp-items="new SelectList((ViewBag.categories))">
-                                <option value="">---Select---</option>
-                            </select>
-                        </div>
+                        <span asp-validation-for="Description" class="text-danger"></span>
                         <div class="mb-3">
                             <label for="formFile" class="form-label">Please choose file</label>
                             <input asp-for="ImageUrl" class="form-control" type="file" id="formFile">
                         </div>
                         <div class="row">
                             <div class="col-12">
-                                <button type="submit" class="btn btn-primary">Submit</button>
+                                <button class="btn btn-primary">Submit</button>
                             </div>
                         </div>
                     </form>

@@ -98,6 +98,7 @@
         </nav>
         <div class="content-wrapper">
             @RenderBody()
+            
             <div class="content-backdrop fade"></div>
        </div>      
     </div>       
@@ -124,5 +125,6 @@
   <script src="~/vuexy-html-bootstrap-admin-template/assets/js/main.js"></script>
   <script src="~/vuexy-html-bootstrap-admin-template/assets/js/dashboards-analytics.js"></script>
     <script src="~/vuexy-html-bootstrap-admin-template/assets/js/cards-statistics.js"></script>
+    @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

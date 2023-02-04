@@ -43,34 +43,42 @@
                             <div class="mb-3 col-md-6">
                                 <label class="form-label">First Name</label>
                                 <input class="form-control" asp-for="Name" type="text" placeholder="John" autofocus="">
+                                <span class="text-danger" asp-validation-for="Name"></span>
                             </div>
                             <div class="mb-3 col-md-6">
                                 <label class="form-label">Last Name</label>
                                 <input class="form-control" asp-for="Surname" type="text" placeholder="Doe">
+                                <span class="text-danger" asp-validation-for="Surname"></span>
                             </div>
                             <div class="mb-3 col-md-6">
                                 <label class="form-label">E-mail</label>
                                 <input class="form-control" asp-for="Email" type="text" placeholder="john.doe@example.com">
+                                <span class="text-danger" asp-validation-for="Email"></span>
                             </div>
                             <div class="mb-3 col-md-6">
                                 <label class="form-label">Age</label>
                                 <input class="form-control" asp-for="Age" type="text" placeholder="25">
+                                <span class="text-danger" asp-validation-for="Age"></span>
                             </div>
                             <div class="mb-3 col-md-6">
                                 <label class="form-label">Phone</label>
                                 <input type="text" class="form-control" asp-for="Phone" placeholder="Phone">
+                                <span class="text-danger" asp-validation-for="Phone"></span>
                             </div>
                             <div class="mb-3 col-md-6">
                                 <label class="form-label">Job</label>
                                 <input type="text" class="form-control" asp-for="Job" placeholder="Job">
+                                <span class="text-danger" asp-validation-for="Job"></span>
                             </div>
                             <div class="mb-3 col-md-6">
                                 <label  class="form-label">User Name</label>
                                 <input type="text" asp-for="UserName" class="form-control"placeholder="User Name">
+                                <span class="text-danger" asp-validation-for="UserName"></span>
                             </div>
                             <div class="mb-3 col-md-6">
                                 <label class="form-label">Password</label>
                                 <input class="form-control" asp-for="Password" type="text" placeholder="Password">
+                                <span class="text-danger" asp-validation-for="Password"></span>
                             </div>
                         </div>
                         <div class="mt-2">
@@ -80,6 +88,8 @@
                 </div>
                 <!-- /Account -->
             </div>
+
+
             <div class="card">
                 <h5 class="card-header">Delete Account</h5>
                 <div class="card-body">

@@ -1,7 +1,11 @@
 ﻿using CapstoneProject_BusinessLayer.Abstract;
+using CapstoneProject_BusinessLayer.ValidationRules;
 using CapstoneProject_DTOs.DTOs;
 using CapstoneProject_EntityLayer.Concrete;
+using FluentValidation;
+using FluentValidation.Results;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -45,7 +49,9 @@ namespace CapstoneProject.Controllers
         [HttpPost]
         public IActionResult Add(NewsArticleAddDTO newsArticle)
         {
-            if (ModelState.IsValid)
+            NewsArticleValidator rules = new NewsArticleValidator();
+            ValidationResult result = rules.Validate(newsArticle);
+            if (result.IsValid)
             {
                 var typesOfWritingId = _typesOfWritingService.TGetList().Where(x => x.Name == "News Article").First().TypesOfWritingID;
                 var categoryID = _articleCategoryService.TGetList().Where(x => x.CategoryName == newsArticle.ArticleCategoryName && x.TypesOfWritingID == typesOfWritingId).First().ArticleCategoryID;
@@ -76,6 +82,14 @@ namespace CapstoneProject.Controllers
                 });
                 return RedirectToAction("Index");
             }
+
+            else
+            {
+                foreach (var item in result.Errors)
+                {
+                    ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
+                }
+            }
             return View();
         }
 
@@ -97,12 +111,20 @@ namespace CapstoneProject.Controllers
             }
             ViewBag.categories = categories;
             var newsArticle = _newsArticleService.TGetById(id);
-            return View(newsArticle);
+            return View(new NewsArticleEditDTO
+            {
+                Title= newsArticle.Title,
+                Description= newsArticle.Description
+
+            });
         }
         [HttpPost]
         public IActionResult Edit(NewsArticleEditDTO newsArticle)
         {
-            if (ModelState.IsValid)
+            NewsArticleEditValidator rules = new NewsArticleEditValidator();
+            ValidationResult result = rules.Validate(newsArticle);
+
+            if (result.IsValid)
             {
                 var typesOfWritingId = _typesOfWritingService.TGetList().Where(x => x.Name == "News Article").First().TypesOfWritingID;
                 var categoryID = _articleCategoryService.TGetList().Where(x => x.CategoryName == newsArticle.ArticleCategoryName && x.TypesOfWritingID == typesOfWritingId).First().ArticleCategoryID;
@@ -127,6 +149,13 @@ namespace CapstoneProject.Controllers
                     ArticleCategoryID = categoryID
                 });
                 return RedirectToAction("Index");
+            }
+            else
+            {
+                foreach (var item in result.Errors)
+                {
+                    ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
+                }
             }
             return View();
         }

@@ -8,7 +8,6 @@
       <span class="text-muted fw-light">User Profile /</span> Profile
     </h4>
 
-    <!-- Header -->
     <div class="row">
       <div class="col-12">
         <div class="card mb-4">
@@ -48,9 +47,7 @@
         </div>
       </div>
     </div>
-    <!-- /Header -->
 
-    <!-- User Profile Content -->
     <div class="row">
 
         <div class="col-xl-4 col-lg-5 col-md-5">
@@ -104,6 +101,8 @@
             </div>
             <!--/ About User -->
         </div>
+       
+        
         <div class="col-xl-8 col-lg-7 col-md-7">
             <!-- Activity Timeline -->
             <div class="card card-action mb-6">
@@ -163,51 +162,51 @@
               </div>
             </div>
             <!--/ Activity Timeline -->
-            <div class="row">
-            </div>           
-        </div>
-        
-        <div class="col-xl-12 col-lg-12 col-md-12">
-            <!-- Profile Overview -->
-            <div class="card mb-4">
-                <div class="card-body">
-                    <p class="card-text text-uppercase">Overview</p>
-                    <ul class="list-unstyled mb-0">
-                        <li class="d-flex align-items-center mb-3">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-point" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                <circle cx="12" cy="12" r="4"></circle>
-                            </svg>
-                            <span class="fw-bold mx-2">Total Count Posts:</span> 
-                            <span>@ViewBag.TotalCount</span>
-                            <span><a href="" style="text-align:right;" class="btn btn-outline-primary">Export</a></span>
-                        </li>
-                        <li class="d-flex align-items-center mb-3">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-point" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                <circle cx="12" cy="12" r="4"></circle>
-                            </svg>
-                            <span class="fw-bold mx-2">Total Articles Count:</span> 
-                            <span>@ViewBag.ArticleCount</span>
-                            <span><a href="" style="text-align:right;" class="btn btn-outline-primary">Export</a></span>
+            @if (ViewBag.Job == "Manager")
+            {
+                <br />
+                <div class="card card-action mb-6">
+                    <div class="card-header align-items-center">
+                        <h5 class="card-action-title mb-0">Employee List</h5>
+                        <small class="text-muted">Total Employee List</small>
+                    </div>
+                    <div class="card-body pb-0">
+                        <div id="ordersLastWeek"></div>
+                        <div class="d-flex justify-content-between align-items-center gap-4">
+                            <h4 class="mb-0">Count : @ViewBag.TotalEmployeeCount</h4>
+                            <small class="text-success"><a href="/Report/TotalEmployee" class="btn btn-outline-warning">Report</a></small>
+                        </div>
+                    </div>
+                </div>
+            }
 
-                        </li>
-                        <li class="d-flex align-items-center mb-3">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-point" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                <circle cx="12" cy="12" r="4"></circle>
-                            </svg>
-                            <span class="fw-bold mx-2">Total News Articles Count:</span> 
-                            <span>@ViewBag.NewsArticleCount</span>
-                            <span><a href="" style="text-align:right;" class="btn btn-outline-primary">Export</a></span>
-                        </li>
 
-                    </ul>
+            <br />
+            <div class="card card-action mb-6">
+                <div class="card-header align-items-center">
+                    <h5 class="card-action-title mb-0">Total News Articles Count</h5>
+                </div>
+                <div class="card-body pb-0">
+                    <div id="ordersLastWeek"></div>
+                    <div class="d-flex justify-content-between align-items-center gap-4">
+                        <h4 class="mb-0">Count : @ViewBag.NewsArticleCount</h4>
+                    </div>
                 </div>
             </div>
-            <!--/ Profile Overview -->
-        </div>
+
+            <br />
+            <div class="card card-action mb-6">
+                <div class="card-header align-items-center">
+                    <h5 class="card-action-title mb-0">Total Articles Count</h5>
+                </div>
+                <div class="card-body pb-0">
+                    <div id="ordersLastWeek"></div>
+                    <div class="d-flex justify-content-between align-items-center gap-4">
+                        <h4 class="mb-0">Count : @ViewBag.ArticleCount</h4>
+                    </div>
+                </div>
+            </div>
+        </div>  
     </div>    
-    <!-- /User Profile Content -->
 </div>
 

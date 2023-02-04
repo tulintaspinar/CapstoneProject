@@ -1,7 +1,10 @@
 ﻿using CapstoneProject_BusinessLayer.Abstract;
+using CapstoneProject_BusinessLayer.ValidationRules;
 using CapstoneProject_DTOs.DTOs;
 using CapstoneProject_EntityLayer.Concrete;
+using FluentValidation.Results;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -43,39 +46,22 @@ namespace CapstoneProject.Controllers
             ViewBag.categories = categories;
             return View();
         }
+
         [HttpPost]
         public IActionResult AddArticle(ArticleAddDTO article)
         {
-            if (ModelState.IsValid)
+            ArticleValidator validationRules = new ArticleValidator();
+            ValidationResult validationResult = validationRules.Validate(article);
+            if (validationResult.IsValid)
             {
-                var typesOfWritingId = _typesOfWritingService.TGetList().Where(x => x.Name == "Article").First().TypesOfWritingID;
-                var categoryID = _articleCategoryService.TGetList().Where(x => x.CategoryName == article.ArticleCategoryName && x.TypesOfWritingID == typesOfWritingId).First().ArticleCategoryID;
-
-                if (article.Image != null)
-                {
-                    var extension = Path.GetExtension(article.Image.FileName);
-                    var newImageName = Guid.NewGuid() + extension;
-                    var location = Path.Combine(Directory.GetCurrentDirectory() + "/wwwroot/IMAGES/ArticleImages/", newImageName);
-                    var stream = new FileStream(location, FileMode.Create);
-                    article.Image.CopyTo(stream);
-                    article.ImageUrl = newImageName;
-                }
-
-                _articleService.TAdd(new Article()
-                {
-                    Date = DateTime.Now,
-                    Title = article.Title,
-                    Description = article.Description,
-                    WriterName = User.Identity.Name,
-                    ImageUrl = article.ImageUrl,
-                    ArticleCategoryID = categoryID
-                });
-                _userActivityTimelineService.Add(new UserActivityTimeline()
-                {
-                    TypeOfWritingName = "Article Added",
-                    Date = DateTime.Now
-                });
                 return RedirectToAction("Index");
+            }
+            else
+            {
+                foreach (var item in validationResult.Errors)
+                {
+                    ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
+                }
             }
             return View();
         }
@@ -89,12 +75,49 @@ namespace CapstoneProject.Controllers
         [HttpGet]
         public IActionResult EditArticle(int id)
         {
-            return View(_articleService.TGetById(id));
+            var value = _articleService.TGetById(id);
+            ArticleEditDTO editDTO = new ArticleEditDTO()
+            {
+                Id=value.ArticleID,
+                Title = value.Title,
+                Description = value.Description,
+                ImageUrl = value.ImageUrl
+            };
+            return View(editDTO);
         }
         [HttpPost]
         public IActionResult EditArticle(ArticleEditDTO dto)
         {
-            return RedirectToAction("Index");
+            ArticleEditValidator rules = new ArticleEditValidator();
+            ValidationResult result = rules.Validate(dto);
+            if(result.IsValid)
+            {
+                var article = _articleService.TGetById(dto.Id);
+
+                if (dto.Image != null)
+                {
+                    var extension = Path.GetExtension(dto.Image.FileName);
+                    var newImageName = Guid.NewGuid() + extension;
+                    var location = Path.Combine(Directory.GetCurrentDirectory() + "/wwwroot/IMAGES/ArticleImages/", newImageName);
+                    var stream = new FileStream(location, FileMode.Create);
+                    dto.Image.CopyTo(stream);
+                    article.ImageUrl = newImageName;
+                }
+                article.Title=dto.Title;
+                article.Description=dto.Description;
+                
+                _articleService.TUpdate(article);
+
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                foreach (var item in result.Errors)
+                {
+                    ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
+                }
+            }
+            return View();
         }
     }
 }

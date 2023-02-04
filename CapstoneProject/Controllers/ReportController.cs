@@ -17,12 +17,6 @@ namespace CapstoneProject.Controllers
             _userManager = userManager;
         }
 
-        public IActionResult Index()
-        {
-            ViewBag.TotalEmployeeCount = _userManager.Users.Count();
-            return View();
-        }
-
         public IActionResult TotalEmployee()
         {
             MemoryStream workStream = new MemoryStream();
