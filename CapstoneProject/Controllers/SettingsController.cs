@@ -81,9 +81,16 @@ namespace CapstoneProject.Controllers
                 user.Email = userEditDTO.Email;
                 user.PhoneNumber = userEditDTO.Phone;
                 user.UserName = userEditDTO.UserName;
-                user.PasswordHash = _userManager.PasswordHasher.HashPassword(user, userEditDTO.Password);
-                user.Image = userEditDTO.ImageUrl;
-
+                user.Job = userEditDTO.Job;
+                
+                if(userEditDTO.ImageUrl!= null)
+                {
+                    user.Image = userEditDTO.ImageUrl;
+                }
+                if (userEditDTO.Password != null)
+                {
+                    user.PasswordHash = _userManager.PasswordHasher.HashPassword(user, userEditDTO.Password);
+                }
                 var success = await _userManager.UpdateAsync(user);
                 if (success.Succeeded)
                 {

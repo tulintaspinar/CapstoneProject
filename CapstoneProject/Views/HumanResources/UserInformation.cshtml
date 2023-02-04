@@ -1,0 +1,22 @@
+﻿@model AppUser
+@{
+    ViewData["Title"] = "UserInformation";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+    <div class="container-xxl flex-grow-1 container-p-y">
+        <div class="row mb-6">
+          <div class="col-md-6 col-xl-6">
+            <div class="card mb-3">
+              <img class="card-img-top" src="~/IMAGES/UserImages/@Model.Image" alt="User Photo">
+              <div class="card-body">
+                <h5 class="card-title">@Model.Name @Model.Surname</h5>
+                <p class="card-text">Email:@Model.Email</p>
+                <p class="card-text">Phone:@Model.PhoneNumber</p>
+                <p class="card-text">Job:@Model.Job</p>
+                <p class="card-text">Age:@Model.Age</p>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>

@@ -14,28 +14,31 @@
                 <thead>
                     <tr>
                         <th>#</th>
-                        <th>Employee Name Surname</th>
+                        <th>Name Surname</th>
                         <th>Role</th>
                         <th>Date Of Start</th>
-                        <th>Salary</th>
                         <th>Information</th>
                         <th>Delete</th>
                     </tr>
                 </thead>
                 <tbody class="table-border-bottom-0">
-                    @foreach (var item in Model)
-                    {
-                        count++;
-                        <tr class="table-active">
-                            <td>@count</td>
-                            <td><strong>@item.Name  @item.Surname</strong></td>
-                            <td><a href="/Role/AssignRole/@item.Id" class="btn btn-outline-warning">Add Role</a></td>
-                            <td>@item.JoinDate.ToShortDateString()</td>
-                            <td>@item.Salary</td>
-                            <td><a href="/HumanResources/Edit/@item.Id" class="btn btn-outline-primary">Information</a></td>
-                            <td><a href="/HumanResources/Delete/@item.Id" class="btn btn-outline-danger">Delete</a></td>
-                        </tr>
+                    @{
+                        foreach (var item in Model)
+                        {
+                            count++;
+                            <tr class="table-active">
+                                <td>@count</td>
+                                <td><strong>@item.Name  @item.Surname</strong></td>
+                                <td><a href="/Role/AssignRole/@item.Id" class="btn btn-outline-warning">Add Role</a></td>
+                                <td>@item.JoinDate.ToShortDateString()</td>
+                                <td>
+                                    <a href="/HumanResources/UserInformation/@item.Id" class="btn btn-outline-primary">Show</a>                                 
+                                </td>
+                                <td><a href="/HumanResources/Delete/@item.Id" class="btn btn-outline-danger">Delete</a></td>
+                            </tr>
+                        }
                     }
+
 
                 </tbody>
             </table>

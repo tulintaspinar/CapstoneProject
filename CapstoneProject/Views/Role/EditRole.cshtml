@@ -6,7 +6,7 @@
 <div class="container-xxl flex-grow-1 container-p-y">
     <div class="col-md-12">
         <div class="card mb-12">
-            <h5 class="card-header">ADD ROLE</h5>
+            <h5 class="card-header">EDIT ROLE</h5>
             <div class="card-body demo-vertical-spacing demo-only-element">
                 <form method="post">
                     <input type="hidden" asp-for="ID" />
@@ -21,8 +21,8 @@
                     </div>
 
                     <div class="input-group">
-                        <button type="submit" class="btn btn-outline-info" style="height:50px; width:150px;"> ADD </button>
-                        <a href="/Role/DeleteRole" class="btn btn-outline-danger" style="height:50px; width:150px; margin-left:15px;"> DELETE </a>
+                        <button type="submit" class="btn btn-outline-info" style="height:50px; width:150px;"> UPDATE </button>
+                        <a href="/Role/DeleteRole/@Model.ID" class="btn btn-outline-danger" style="height:50px; width:150px; margin-left:15px;"> DELETE </a>
                     </div>
                 </form>
             </div>

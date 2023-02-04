@@ -8,9 +8,9 @@
     <div class="row mb-4">
         <div class="col-md mb-4 mb-md-0">
             <div class="card">
-                <h5 class="card-header">News Article Add</h5>
+                <h5 class="card-header">News Article Edit</h5>
                 <div class="card-body">
-                    <form class="browser-default-validation">
+                    <form class="browser-default-validation" method="post">
                         <input type="hidden" asp-for="ID" />
                         <div class="mb-3">
                             <label class="form-label" for="basic-default-name">Title</label>
@@ -19,16 +19,23 @@
                         <span asp-validation-for="Title" class="text-danger"></span>
                         <div class="mb-3">
                             <label class="form-label" for="basic-default-name">Description</label>
-                            <textarea type="text" asp-for="Description" class="form-control" placeholder="Enter description" required=""></textarea>                            
+                            <textarea type="text" asp-for="Description" class="form-control" placeholder="Enter description"></textarea>                            
                         </div>
                         <span asp-validation-for="Description" class="text-danger"></span>
+                                                <div class="mb-3">
+                            <label class="form-label" for="basic-default-category">Category</label>
+                                <select class="form-select" id="basic-default-category" required="" asp-for="ArticleCategoryName" asp-items="new SelectList((ViewBag.categories))">
+                                    <option value="">---Select---</option>
+                                </select>
+
+                        </div>
                         <div class="mb-3">
                             <label for="formFile" class="form-label">Please choose file</label>
                             <input asp-for="ImageUrl" class="form-control" type="file" id="formFile">
                         </div>
                         <div class="row">
                             <div class="col-12">
-                                <button class="btn btn-primary">Submit</button>
+                                <button class="btn btn-primary">Update</button>
                             </div>
                         </div>
                     </form>

@@ -23,7 +23,7 @@ namespace CapstoneProject.Controllers
 
             Document doc = new Document();
             doc.SetMargins(0, 0, 0, 0);
-            PdfPTable tableLayout = new PdfPTable(7);
+            PdfPTable tableLayout = new PdfPTable(6);
             doc.SetMargins(10, 10, 10, 0);
             PdfWriter.GetInstance(doc, workStream).CloseStream = false;
             doc.Open();
@@ -46,7 +46,7 @@ namespace CapstoneProject.Controllers
         protected PdfPTable Add_Content_To_PDF(PdfPTable tableLayout)
         {
             var users = _userManager.Users.ToList();
-            float[] headers = { 40, 15, 20, 15, 10, 10, 15 }; //Header Widths  
+            float[] headers = { 40, 15, 20, 15, 10, 15 }; //Header Widths  
             tableLayout.SetWidths(headers); //Set the pdf headers  
             tableLayout.WidthPercentage = 100; //Set the PDF File witdh percentage  
             tableLayout.HeaderRows = 1;
@@ -56,7 +56,6 @@ namespace CapstoneProject.Controllers
             AddCellToHeader(tableLayout, "Phone Number");
             AddCellToHeader(tableLayout, "Email");
             AddCellToHeader(tableLayout, "Job");
-            AddCellToHeader(tableLayout, "Salary");
             AddCellToHeader(tableLayout, "Age");
             AddCellToHeader(tableLayout, "Join Date");
 
@@ -69,7 +68,6 @@ namespace CapstoneProject.Controllers
                     AddCellToBody(tableLayout, cust.PhoneNumber.ToString(), count);
                     AddCellToBody(tableLayout, cust.Email.ToString(), count);
                     AddCellToBody(tableLayout, cust.Job.ToString(), count);
-                    AddCellToBody(tableLayout, cust.Salary.ToString(), count);
                     AddCellToBody(tableLayout, cust.Age.ToString(), count);
                     AddCellToBody(tableLayout, cust.JoinDate.ToShortDateString().ToString(), count);
                     count++;

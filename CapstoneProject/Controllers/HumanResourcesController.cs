@@ -24,6 +24,10 @@ namespace CapstoneProject.Controllers
             return View(users);
         }
 
-
+        public async Task<IActionResult> UserInformation(int id)
+        {
+            var user = await _userManager.FindByIdAsync(id.ToString());
+            return View(user);
+        }
     }
 }
