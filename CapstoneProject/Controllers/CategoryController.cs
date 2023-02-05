@@ -80,18 +80,17 @@ namespace CapstoneProject.Controllers
         [HttpPost]
         public IActionResult Update(ArticleCategoryEditDTO article)
         {
-            if (ModelState.IsValid)
+            var typesOfWritingId = _typesOfWritingService.TGetList().Where(x => x.Name == article.TypesOfWritingName).FirstOrDefault().TypesOfWritingID;
+            _articleCategoryService.TUpdate(new ArticleCategory()
             {
-                var typesOfWritingId = _typesOfWritingService.TGetList().Where(x => x.Name == article.TypesOfWritingName).FirstOrDefault().TypesOfWritingID;
-                _articleCategoryService.TUpdate(new ArticleCategory()
-                {
-                    ArticleCategoryID = article.ID,
-                    CategoryName = article.CategoryName,
-                    TypesOfWritingID = typesOfWritingId
-                });
-                return RedirectToAction("Index");
-            }
+                ArticleCategoryID = article.ID,
+                CategoryName = article.CategoryName,
+                TypesOfWritingID = typesOfWritingId
+            });
+            TempData["message"] = "Updated a category";
             return RedirectToAction("Index");
+
+
         }
     }
 }
