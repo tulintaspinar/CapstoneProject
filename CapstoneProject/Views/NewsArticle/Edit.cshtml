@@ -24,7 +24,7 @@
                         <span asp-validation-for="Description" class="text-danger"></span>
                                                 <div class="mb-3">
                             <label class="form-label" for="basic-default-category">Category</label>
-                                <select class="form-select" id="basic-default-category" required="" asp-for="ArticleCategoryName" asp-items="new SelectList((ViewBag.categories))">
+                                <select class="form-select" id="basic-default-category" asp-for="ArticleCategoryName" asp-items="new SelectList((ViewBag.categories))">
                                     <option value="">---Select---</option>
                                 </select>
 

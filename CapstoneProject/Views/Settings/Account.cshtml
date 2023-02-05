@@ -126,7 +126,18 @@
                         }
                         else if(item.TypeOfWritingName=="Article Added"){
                                     <li class="timeline-item timeline-item-transparent">
-                                        <span class="timeline-point timeline-point-info"></span>
+                                        <span class="timeline-point timeline-point-success"></span>
+                                        <div class="timeline-event">
+                                            <div class="timeline-header">
+                                                <h6 class="mb-0">@item.TypeOfWritingName</h6>
+                                                <small class="text-muted">@item.Date.ToShortDateString()</small>
+                                            </div>
+                                        </div>
+                                    </li>
+                        }
+                        else if(item.TypeOfWritingName=="Article Updated"){
+                                    <li class="timeline-item timeline-item-transparent">
+                                        <span class="timeline-point timeline-point-warning"></span>
                                         <div class="timeline-event">
                                             <div class="timeline-header">
                                                 <h6 class="mb-0">@item.TypeOfWritingName</h6>
@@ -138,6 +149,17 @@
                         else if (item.TypeOfWritingName=="News article Added"){
                                     <li class="timeline-item timeline-item-transparent">
                                         <span class="timeline-point timeline-point-success"></span>
+                                        <div class="timeline-event">
+                                            <div class="timeline-header">
+                                                <h6 class="mb-0">@item.TypeOfWritingName</h6>
+                                                <small class="text-muted">@item.Date.ToShortDateString()</small>
+                                            </div>
+                                        </div>
+                                    </li>
+                        }                       
+                        else if (item.TypeOfWritingName=="News article Updated"){
+                                    <li class="timeline-item timeline-item-transparent">
+                                        <span class="timeline-point timeline-point-warning"></span>
                                         <div class="timeline-event">
                                             <div class="timeline-header">
                                                 <h6 class="mb-0">@item.TypeOfWritingName</h6>

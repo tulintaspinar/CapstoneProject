@@ -49,48 +49,36 @@ namespace CapstoneProject.Controllers
         [HttpPost]
         public IActionResult Add(NewsArticleAddDTO newsArticle)
         {
-            NewsArticleValidator rules = new NewsArticleValidator();
-            ValidationResult result = rules.Validate(newsArticle);
-            if (result.IsValid)
+            var typesOfWritingId = _typesOfWritingService.TGetList().Where(x => x.Name == "News Article").First().TypesOfWritingID;
+            var categoryID = _articleCategoryService.TGetList().Where(x => x.CategoryName == newsArticle.ArticleCategoryName && x.TypesOfWritingID == typesOfWritingId).First().ArticleCategoryID;
+
+            if (newsArticle.Image != null)
             {
-                var typesOfWritingId = _typesOfWritingService.TGetList().Where(x => x.Name == "News Article").First().TypesOfWritingID;
-                var categoryID = _articleCategoryService.TGetList().Where(x => x.CategoryName == newsArticle.ArticleCategoryName && x.TypesOfWritingID == typesOfWritingId).First().ArticleCategoryID;
-
-                if (newsArticle.Image != null)
-                {
-                    var extension = Path.GetExtension(newsArticle.Image.FileName);
-                    var newImageName = Guid.NewGuid() + extension;
-                    var location = Path.Combine(Directory.GetCurrentDirectory() + "/wwwroot/IMAGES/NewsArticleImages/", newImageName);
-                    var stream = new FileStream(location, FileMode.Create);
-                    newsArticle.Image.CopyTo(stream);
-                    newsArticle.ImageUrl = newImageName;
-                }
-
-                _newsArticleService.TAdd(new NewsArticle()
-                {
-                    Title = newsArticle.Title,
-                    Description = newsArticle.Description,
-                    Date = DateTime.Now,
-                    WriterName = User.Identity.Name,
-                    ImageUrl = newsArticle.ImageUrl,
-                    ArticleCategoryID = categoryID
-                });
-                _userActivityTimelineService.Add(new UserActivityTimeline()
-                {
-                    TypeOfWritingName = "News article Added",
-                    Date = DateTime.Now
-                });
-                return RedirectToAction("Index");
+                var extension = Path.GetExtension(newsArticle.Image.FileName);
+                var newImageName = Guid.NewGuid() + extension;
+                var location = Path.Combine(Directory.GetCurrentDirectory() + "/wwwroot/IMAGES/NewsArticleImages/", newImageName);
+                var stream = new FileStream(location, FileMode.Create);
+                newsArticle.Image.CopyTo(stream);
+                newsArticle.ImageUrl = newImageName;
             }
 
-            else
+            _newsArticleService.TAdd(new NewsArticle()
             {
-                foreach (var item in result.Errors)
-                {
-                    ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
-                }
-            }
-            return View();
+                Title = newsArticle.Title,
+                Description = newsArticle.Description,
+                Date = DateTime.Now,
+                WriterName = User.Identity.Name,
+                ImageUrl = newsArticle.ImageUrl,
+                ArticleCategoryID = categoryID
+            });
+            _userActivityTimelineService.Add(new UserActivityTimeline()
+            {
+                WriterName = User.Identity.Name,
+                TypeOfWritingName = "News article Added",
+                Date = DateTime.Now
+            });
+
+            return RedirectToAction("Index");
         }
 
         public IActionResult Delete(int id)
@@ -121,43 +109,37 @@ namespace CapstoneProject.Controllers
         [HttpPost]
         public IActionResult Edit(NewsArticleEditDTO newsArticle)
         {
-            NewsArticleEditValidator rules = new NewsArticleEditValidator();
-            ValidationResult result = rules.Validate(newsArticle);
+            var typesOfWritingId = _typesOfWritingService.TGetList().Where(x => x.Name == "News Article").First().TypesOfWritingID;
+            var categoryID = _articleCategoryService.TGetList().Where(x => x.CategoryName == newsArticle.ArticleCategoryName && x.TypesOfWritingID == typesOfWritingId).First().ArticleCategoryID;
 
-            if (result.IsValid)
+
+            if (newsArticle.Image != null)
             {
-                var typesOfWritingId = _typesOfWritingService.TGetList().Where(x => x.Name == "News Article").First().TypesOfWritingID;
-                var categoryID = _articleCategoryService.TGetList().Where(x => x.CategoryName == newsArticle.ArticleCategoryName && x.TypesOfWritingID == typesOfWritingId).First().ArticleCategoryID;
-
-
-                if (newsArticle.Image != null)
-                {
-                    var extension = Path.GetExtension(newsArticle.Image.FileName);
-                    var newImageName = Guid.NewGuid() + extension;
-                    var location = Path.Combine(Directory.GetCurrentDirectory() + "/wwwroot/IMAGES/NewsArticleImages/", newImageName);
-                    var stream = new FileStream(location, FileMode.Create);
-                    newsArticle.Image.CopyTo(stream);
-                    newsArticle.ImageUrl = newImageName;
-                }
-
-                _newsArticleService.TUpdate(new NewsArticle()
-                {
-                    NewsArticleID = newsArticle.ID,
-                    Title = newsArticle.Title,
-                    Description = newsArticle.Description,
-                    ImageUrl = newsArticle.ImageUrl,
-                    ArticleCategoryID = categoryID
-                });
-                return RedirectToAction("Index");
+                var extension = Path.GetExtension(newsArticle.Image.FileName);
+                var newImageName = Guid.NewGuid() + extension;
+                var location = Path.Combine(Directory.GetCurrentDirectory() + "/wwwroot/IMAGES/NewsArticleImages/", newImageName);
+                var stream = new FileStream(location, FileMode.Create);
+                newsArticle.Image.CopyTo(stream);
+                newsArticle.ImageUrl = newImageName;
             }
-            else
+
+            _newsArticleService.TUpdate(new NewsArticle()
             {
-                foreach (var item in result.Errors)
-                {
-                    ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
-                }
-            }
-            return View();
+                NewsArticleID = newsArticle.ID,
+                Title = newsArticle.Title,
+                Description = newsArticle.Description,
+                ImageUrl = newsArticle.ImageUrl,
+                ArticleCategoryID = categoryID
+            });
+
+            _userActivityTimelineService.Add(new UserActivityTimeline()
+            {
+                WriterName = User.Identity.Name,
+                TypeOfWritingName = "News article Updated",
+                Date = DateTime.Now
+            });
+
+            return RedirectToAction("Index");
         }
     }
 }

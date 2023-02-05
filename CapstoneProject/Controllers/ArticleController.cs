@@ -54,6 +54,34 @@ namespace CapstoneProject.Controllers
             ValidationResult validationResult = validationRules.Validate(article);
             if (validationResult.IsValid)
             {
+                var typesOfWritingId = _typesOfWritingService.TGetList().Where(x => x.Name == "Article").First().TypesOfWritingID;
+                var categoryID = _articleCategoryService.TGetList().Where(x => x.CategoryName == article.ArticleCategoryName && x.TypesOfWritingID == typesOfWritingId).First().ArticleCategoryID;
+
+                if (article.Image != null)
+                {
+                    var extension = Path.GetExtension(article.Image.FileName);
+                    var newImageName = Guid.NewGuid() + extension;
+                    var location = Path.Combine(Directory.GetCurrentDirectory() + "/wwwroot/IMAGES/ArticleImages/", newImageName);
+                    var stream = new FileStream(location, FileMode.Create);
+                    article.Image.CopyTo(stream);
+                    article.ImageUrl = newImageName;
+                }
+
+                _articleService.TAdd(new Article()
+                {
+                    Date = DateTime.Now,
+                    Title = article.Title,
+                    Description = article.Description,
+                    WriterName = User.Identity.Name,
+                    ImageUrl = article.ImageUrl,
+                    ArticleCategoryID = categoryID
+                });
+                _userActivityTimelineService.Add(new UserActivityTimeline()
+                {
+                    WriterName = User.Identity.Name,
+                    TypeOfWritingName = "Article Added",
+                    Date = DateTime.Now
+                }) ;
                 return RedirectToAction("Index");
             }
             else
@@ -107,6 +135,13 @@ namespace CapstoneProject.Controllers
                 article.Description=dto.Description;
                 
                 _articleService.TUpdate(article);
+
+                _userActivityTimelineService.Add(new UserActivityTimeline()
+                {
+                    WriterName = User.Identity.Name,
+                    TypeOfWritingName = "Article Updated",
+                    Date = DateTime.Now
+                });
 
                 return RedirectToAction("Index");
             }

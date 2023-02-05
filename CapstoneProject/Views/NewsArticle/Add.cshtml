@@ -10,19 +10,18 @@
             <div class="card">
                 <h5 class="card-header">News Article Add</h5>
                 <div class="card-body">
-                    <form class="browser-default-validation" method="post" enctype="multipart/form-data">
+                    <form method="post" enctype="multipart/form-data">
                         <div class="mb-3">
                             <label class="form-label" for="basic-default-name">Title</label>
                             <input type="text" asp-for="Title" class="form-control"  placeholder="Enter title">
-                            <span asp-validation-for="Title" class="text-danger"></span>
                         </div>
                         <div class="mb-3">
                             <label class="form-label" for="basic-default-name">Description</label>
-                            <textarea type="text" asp-for="Description" class="form-control" placeholder="Enter description" required=""></textarea>
+                            <textarea type="text" asp-for="Description" class="form-control" placeholder="Enter description"></textarea>
                         </div>
                         <div class="mb-3">
                             <label class="form-label" for="basic-default-category">Category</label>
-                                <select class="form-select" id="basic-default-category" required="" asp-for="ArticleCategoryName" asp-items="new SelectList((ViewBag.categories))">
+                                <select class="form-select" id="basic-default-category" asp-for="ArticleCategoryName" asp-items="new SelectList((ViewBag.categories))">
                                     <option value="">---Select---</option>
                                 </select>
                             
