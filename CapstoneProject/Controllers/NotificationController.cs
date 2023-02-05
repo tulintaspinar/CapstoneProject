@@ -4,6 +4,7 @@ using CapstoneProject_EntityLayer.Concrete;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace CapstoneProject.Controllers
@@ -22,7 +23,7 @@ namespace CapstoneProject.Controllers
         public async Task<IActionResult> Index()
         {
             var user = await _userManager.FindByNameAsync(User.Identity.Name);
-            var values = _notificationService.GetByUserId(user.Id);
+            var values = _notificationService.TGetList().Where(x=>x.UserId!=user.Id).ToList();
             return View(values);
         }
         [HttpGet]
@@ -33,7 +34,7 @@ namespace CapstoneProject.Controllers
         [HttpPost]
         public async Task<IActionResult> AddNotification(NotificationAddDTO notificationAddDTO)
         {
-            var user = await _userManager.FindByNameAsync(User.Identity.Name);
+            var user = await _userManager.FindByIdAsync(notificationAddDTO.UserId);
             _notificationService.TAdd(new Notification()
             {
                 Title = notificationAddDTO.Title,

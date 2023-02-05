@@ -3,29 +3,29 @@
     ViewData["Title"] = "AddNotification";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
 <div class="container-xxl flex-grow-1 container-p-y">
     <h4 class="fw-bold py-3 mb-12"><span class="text-muted fw-light">Notifications /</span> Add Notification</h4>
+
     <div class="row">
         <div class="col-md-12">
             <div class="card mb-12">
-              <div class="card-body demo-vertical-spacing demo-only-element">
-                <form method="post">
+                <div class="card-body demo-vertical-spacing demo-only-element">
+                    <form method="post">
                         <div class="input-group">
                             <span class="input-group-text" id="basic-addon11">Title</span>
-                            <input type="text" class="form-control" placeholder="Username" asp-for="Title">
+                            <input type="text" class="form-control" placeholder="Title" asp-for="Title">
                         </div>
                         <br />
                         <div class="input-group">
-                            <span class="input-group-text" id="basic-addon11">Description</span>
+                            <span class="input-group-text" id="basic-addon11">Message</span>
                             <textarea type="text" class="form-control" placeholder="Description" rows="5" cols="5" asp-for="Description"></textarea>
                         </div>
                         <br />
                         <div class="input-group">
                             <button type="submit" class="btn btn-primary">ADD</button>
                         </div>
-                </form>
-              </div>
+                    </form>
+                </div>
             </div>
         </div>
     </div>

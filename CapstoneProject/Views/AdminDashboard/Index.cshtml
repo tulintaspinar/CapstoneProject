@@ -4,35 +4,3 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@section Scripts
-{
-    <script src="~/lib/microsoft/signalr/dist/browser/signalr.min.js"></script>
-
-    <script type="text/javascript">
-        $(document).ready(() => {
-            var connection = new signalR.HubConnectionBuilder().withUrl("https://localhost:44347/MyHub").build();
-
-            $("#conStatus").text(connection.connectionState);
-
-            connection.start().then(() => {
-                $("#conStatus").text(connection.connectionState);
-            }).catch((err) => { console.log(err) });
-        })
-    </script>
-
-}
-<div class="row">
-    <div class="col-md-8 offset-2">
-        <input type="text" class="form-control" id="txtName" />
-        <hr />
-        <button class="btn btn-warning" id="btnSave">İsmi Kaydet</button>
-
-        <div class="alert alert-info mt-2">
-            <div class="float-left">
-                Bağlantı Durumu:<strong id="conStatus"></strong> , Client Sayısı : <strong id="clientCount"></strong>
-            </div>
-            <div class="clearfix"></div>
-        </div>
-    </div>
-</div>
-
