@@ -21,5 +21,6 @@ namespace CapstoneProject_DataAccessLayer.Concrete
         public DbSet<TypesOfWriting> TypesOfWritings { get; set; }
         public DbSet<Notification> Notifications { get; set; }
         public DbSet<UserActivityTimeline> UserActivityTimelines { get; set; }
+        public DbSet<Contact> Contacts { get; set; }
     }
 }

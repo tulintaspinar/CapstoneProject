@@ -1,4 +1,5 @@
 ﻿using CapstoneProject.Areas.Homepage.Models;
+using CapstoneProject_BusinessLayer.Abstract;
 using MailKit.Net.Smtp;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -10,9 +11,17 @@ namespace CapstoneProject.Areas.Homepage.Controllers
     [AllowAnonymous]
     public class ContactController : Controller
     {
+        private readonly IContactService _contactService;
+
+        public ContactController(IContactService contactService)
+        {
+            _contactService = contactService;
+        }
+
         [HttpGet]
         public IActionResult Index()
         {
+            ViewBag.model = _contactService.TGetContact();
             return View();
         }
 

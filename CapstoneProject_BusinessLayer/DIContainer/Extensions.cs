@@ -37,6 +37,9 @@ namespace CapstoneProject_BusinessLayer.DIContainer
             services.AddScoped<IUserActivityTimelineDal, EfUserActivityTimelineDal>();
             services.AddScoped<IUserActivityTimelineService,UserActivityTimelineManager>();
 
+            services.AddScoped<IContactDal,EfContactDal>();
+            services.AddScoped<IContactService,ContactManager>();
+
             //CQRS
             services.AddScoped<GetLastThreeArticleQueryHandler>();
             services.AddScoped<GetTwoArticleQueryHandler>();

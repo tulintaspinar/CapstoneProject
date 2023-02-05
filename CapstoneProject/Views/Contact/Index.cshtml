@@ -1,0 +1,46 @@
+﻿@model Contact
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-xxl flex-grow-1 container-p-y">
+    <div class="col-xl-12">
+        <form method="post">
+            <div class="card mb-4">
+                <h5 class="card-header">CONTACT US PAGE EDIT</h5>
+                <div class="card-body">
+                    <input type="hidden" asp-for="ContactID" />
+                    <div class="mb-3 row">
+                        <label for="html5-text-input" class="col-md-2 col-form-label">Title</label>
+                        <div class="col-md-10">
+                            <input asp-for="Title" class="form-control" type="text">
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label for="html5-text-input" class="col-md-2 col-form-label">Subtitle</label>
+                        <div class="col-md-10">
+                            <input asp-for="Subtitle" class="form-control" type="text">
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label for="html5-text-input" class="col-md-2 col-form-label">Email</label>
+                        <div class="col-md-10">
+                            <input asp-for="Email" class="form-control" type="text">
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label for="html5-text-input" class="col-md-2 col-form-label">Description</label>
+                        <div class="col-md-10">
+                            <textarea cols="8" rows="10" asp-for="Description" class="form-control" type="text"></textarea>
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <button type="submit" class="btn btn-outline-info">UPDATE</button>
+                    </div>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>
