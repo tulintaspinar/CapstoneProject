@@ -18,14 +18,19 @@ namespace CapstoneProject_BusinessLayer.Concrete
             _articleDal = articleDal;
         }
 
+        public List<Article> GetArticleByCategory(string userName)
+        {
+            return _articleDal.GetArticleByCategory(userName);
+        }
+
         public List<Article> GetArticleByCategory()
         {
             return _articleDal.GetArticleByCategory();
         }
 
-        public List<Article> GetByUserName(string name)
+        public List<Article> GetByUserName(string userName)
         {
-            return _articleDal.GetByUserName(name);
+            return _articleDal.GetByUserName(userName);
         }
 
         public void TAdd(Article t)

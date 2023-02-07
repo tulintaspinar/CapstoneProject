@@ -10,6 +10,7 @@ namespace CapstoneProject_BusinessLayer.Abstract
     public interface INewsArticleService : IGenericService<NewsArticle>
     {
         List<NewsArticle> GetNewsArticleByCategory();
+        List<NewsArticle> GetNewsArticleByCategory(string userName);
         List<NewsArticle> GetByUserName(string userName);
     }
 }

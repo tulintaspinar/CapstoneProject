@@ -29,7 +29,7 @@ namespace CapstoneProject.Controllers
 
         public IActionResult Index()
         {
-            return View(_articleService.GetArticleByCategory());
+            return View(_articleService.GetArticleByCategory(User.Identity.Name));
         }
 
         [HttpGet]
@@ -50,10 +50,6 @@ namespace CapstoneProject.Controllers
         [HttpPost]
         public IActionResult AddArticle(ArticleAddDTO article)
         {
-            ArticleValidator validationRules = new ArticleValidator();
-            ValidationResult validationResult = validationRules.Validate(article);
-            if (validationResult.IsValid)
-            {
                 var typesOfWritingId = _typesOfWritingService.TGetList().Where(x => x.Name == "Article").First().TypesOfWritingID;
                 var categoryID = _articleCategoryService.TGetList().Where(x => x.CategoryName == article.ArticleCategoryName && x.TypesOfWritingID == typesOfWritingId).First().ArticleCategoryID;
 
@@ -83,15 +79,7 @@ namespace CapstoneProject.Controllers
                     Date = DateTime.Now
                 }) ;
                 return RedirectToAction("Index");
-            }
-            else
-            {
-                foreach (var item in validationResult.Errors)
-                {
-                    ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
-                }
-            }
-            return View();
+
         }
 
         public IActionResult DeleteArticle(int id)

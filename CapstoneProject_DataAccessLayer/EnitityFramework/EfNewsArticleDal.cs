@@ -28,5 +28,13 @@ namespace CapstoneProject_DataAccessLayer.EnitityFramework
                 return context.NewsArticles.Include(x => x.ArticleCategory).ToList();
             }
         }
+
+        public List<NewsArticle> GetNewsArticleByCategory(string userName)
+        {
+            using (var context = new Context())
+            {
+                return context.NewsArticles.Include(x => x.ArticleCategory).Where(x => x.WriterName == userName).ToList();
+            }
+        }
     }
 }

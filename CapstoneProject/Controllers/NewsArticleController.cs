@@ -30,7 +30,7 @@ namespace CapstoneProject.Controllers
 
         public IActionResult Index()
         {
-            return View(_newsArticleService.GetNewsArticleByCategory());
+            return View(_newsArticleService.GetNewsArticleByCategory(User.Identity.Name));
         }
         [HttpGet]
         public IActionResult Add()
@@ -129,6 +129,7 @@ namespace CapstoneProject.Controllers
                 Title = newsArticle.Title,
                 Description = newsArticle.Description,
                 ImageUrl = newsArticle.ImageUrl,
+                WriterName=User.Identity.Name,
                 ArticleCategoryID = categoryID
             });
 

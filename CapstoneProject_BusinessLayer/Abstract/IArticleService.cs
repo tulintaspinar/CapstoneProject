@@ -9,7 +9,8 @@ namespace CapstoneProject_BusinessLayer.Abstract
 {
     public interface IArticleService : IGenericService<Article>
     {
+        List<Article> GetArticleByCategory(string userName);
         List<Article> GetArticleByCategory();
-        List<Article> GetByUserName(string name);
+        List<Article> GetByUserName(string userName);
     }
 }
