@@ -13,7 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CapstoneProject", "Capstone
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CapstoneProject_DTOs", "CapstoneProject_DTOs\CapstoneProject_DTOs.csproj", "{FCD02E1C-8249-490C-9D7A-C813331222FC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CapstoneProject_API", "CapstoneProject_API\CapstoneProject_API.csproj", "{BB1429E9-93CD-41D2-9EBC-86836A4F88E2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "API", "API\API.csproj", "{7522A1C8-BA0A-4C39-9C2C-0B62688DFB08}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,10 +41,10 @@ Global
 		{FCD02E1C-8249-490C-9D7A-C813331222FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FCD02E1C-8249-490C-9D7A-C813331222FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FCD02E1C-8249-490C-9D7A-C813331222FC}.Release|Any CPU.Build.0 = Release|Any CPU
-		{BB1429E9-93CD-41D2-9EBC-86836A4F88E2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BB1429E9-93CD-41D2-9EBC-86836A4F88E2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BB1429E9-93CD-41D2-9EBC-86836A4F88E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BB1429E9-93CD-41D2-9EBC-86836A4F88E2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7522A1C8-BA0A-4C39-9C2C-0B62688DFB08}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7522A1C8-BA0A-4C39-9C2C-0B62688DFB08}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7522A1C8-BA0A-4C39-9C2C-0B62688DFB08}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7522A1C8-BA0A-4C39-9C2C-0B62688DFB08}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

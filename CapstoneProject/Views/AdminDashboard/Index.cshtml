@@ -3,7 +3,31 @@
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+@section Scripts
+{
+    <script src="~/lib/microsoft/signalr/dist/browser/signalr.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(() => {
+            var connection = new signalR.HubConnectionBuilder().withAutomaticReconnect([1000, 2000, 3000, 8000]).withUrl("https://localhost:44360/MyHub").build();
+            
+            function statusShow(){
+                $("#conStatus").text(connection.connectionState);
+            }
 
+            statusShow();
+
+            connection.start().then(()=>{
+                statusShow();
+            }).catch((err)=>{console.log(err)});
+
+
+            connection.on("ReceiveClientCount", (Name) => {
+                $("#havadurumu").text(Name);
+            })
+        })
+    </script>
+
+}
 <div class="container-xxl flex-grow-1 container-p-y">
     <div class="row">
         <div class="col-md-8 grid-margin stretch-card">
@@ -13,10 +37,10 @@
                     <div class="container">
                         <div class="card-body" style="text-align:center;">
                             <div>
-                                <h2 class="mb-0 font-weight-normal"><i class="icon-sun mr-2"></i>@ViewBag.havaDurumu<sup>C</sup></h2>
+                                <h2 class="mb-0 font-weight-normal"><i class="icon-sun mr-2"></i> <b id="havadurumu"></b> <sup>C</sup></h2>
                             </div>
                             <div class="ml-2">
-                                <h4 class="location font-weight-normal"> Trabzon / Türkiye</h4>
+                                <h4 class="location font-weight-normal"> İstanbul / Türkiye</h4>
                             </div>
                         </div>
                     </div>
@@ -37,9 +61,6 @@
                 </div>
             </div>
         </div>
-    </div>
-    <div class="row">
-        
     </div>
 </div>
 

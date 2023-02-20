@@ -1,4 +1,4 @@
-using CapstoneProject_API.Hubs;
+using API.Hubs;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -7,13 +7,12 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using Microsoft.OpenApi.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace CapstoneProject_API
+namespace API
 {
     public class Startup
     {
@@ -30,10 +29,6 @@ namespace CapstoneProject_API
             services.AddCors();
             services.AddSignalR();
             services.AddControllers();
-            services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "CapstoneProject_API", Version = "v1" });
-            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -42,14 +37,14 @@ namespace CapstoneProject_API
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "CapstoneProject_API v1"));
             }
 
             app.UseHttpsRedirection();
 
             app.UseRouting();
-            app.UseCors(x=>x.AllowAnyMethod().AllowAnyHeader().AllowCredentials().SetIsOriginAllowed(origin=>true)); //SetIsOriginAllowed dýþarýdan gelen kaynaða izin veriyor
+
+            app.UseCors(x => x.AllowAnyMethod().AllowAnyHeader().AllowCredentials().SetIsOriginAllowed(origin => true)); //SetIsOriginAllowed dýþarýdan gelen kaynaða izin veriyor
+
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
