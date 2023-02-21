@@ -24,7 +24,9 @@
                             <select id="drpEmpList" class="form-control" asp-for="TypesOfWritingName" asp-items="(new SelectList(ViewBag.typesOfWriting))">
                                 <option value="">--Select--</option>
                             </select>
+                           
                         </div>
+                        <span class="text-danger" asp-validation-for="TypesOfWritingName"></span>
                     </div>
                     <div class="mb-3 row">
                         <button type="submit" class="btn btn-outline-info">ADD</button>

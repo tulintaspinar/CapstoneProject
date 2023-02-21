@@ -81,9 +81,9 @@
                                 </a>
                             </div>
                             <div class="input-group input-group-merge">
-                                <input asp-for="PasswordHash" type="password" class="form-control" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;">
-                                <span class="input-group-text cursor-pointer"><i class="ti ti-eye-off"></i></span>
+                                <input asp-for="PasswordHash" type="password" class="form-control" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;">                              
                             </div>
+                            <span class="text-danger" asp-validation-for="PasswordHash"></span>
                         </div>
                         <div class="mb-3">
                         </div>

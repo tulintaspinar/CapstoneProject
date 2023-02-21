@@ -1,6 +1,8 @@
 ﻿using CapstoneProject_BusinessLayer.Abstract;
+using CapstoneProject_BusinessLayer.ValidationRules;
 using CapstoneProject_DTOs.DTOs;
 using CapstoneProject_EntityLayer.Concrete;
+using FluentValidation.Results;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -34,16 +36,29 @@ namespace CapstoneProject.Controllers
         [HttpPost]
         public async Task<IActionResult> AddNotification(NotificationAddDTO notificationAddDTO)
         {
-            var user = await _userManager.FindByIdAsync(notificationAddDTO.UserId);
-            _notificationService.TAdd(new Notification()
+            NotificationAddValidator validations  =new NotificationAddValidator();
+            ValidationResult result = validations.Validate(notificationAddDTO);
+            if (result.IsValid)
             {
-                Title = notificationAddDTO.Title,
-                Description = notificationAddDTO.Description,
-                Status = "Not Read",
-                Date = DateTime.Now,
-                UserId = user.Id
-            });
-            return RedirectToAction("Index");
+                var user = await _userManager.FindByIdAsync(notificationAddDTO.UserId);
+                _notificationService.TAdd(new Notification()
+                {
+                    Title = notificationAddDTO.Title,
+                    Description = notificationAddDTO.Description,
+                    Status = "Not Read",
+                    Date = DateTime.Now,
+                    UserId = user.Id
+                });
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                foreach (var item in result.Errors)
+                {
+                    ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
+                }
+            }
+            return View();
         }
 
         [HttpGet]

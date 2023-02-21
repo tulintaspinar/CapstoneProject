@@ -2,9 +2,9 @@
 using CapstoneProject_BusinessLayer.ValidationRules;
 using CapstoneProject_DTOs.DTOs;
 using CapstoneProject_EntityLayer.Concrete;
+using FluentValidation;
 using FluentValidation.Results;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.ModelBinding;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -35,21 +35,17 @@ namespace CapstoneProject.Controllers
         [HttpGet]
         public IActionResult AddArticle()
         {
-            var id = _typesOfWritingService.TGetList().Where(x => x.Name == "Article").First().TypesOfWritingID; //article id'si alındı
-            var newsArticleCategories = _articleCategoryService.TGetList().Where(x => x.TypesOfWritingID == id); //article'ye ait kategoriler listelenir.
-            List<string> categories = new List<string>();
-            foreach (var item in newsArticleCategories)
-            {
-                if (!categories.Equals(item.CategoryName))
-                    categories.Add(item.CategoryName);
-            }
-            ViewBag.categories = categories;
+            ViewBag.categories = Categories();
             return View();
         }
 
         [HttpPost]
         public IActionResult AddArticle(ArticleAddDTO article)
         {
+            ArticleValidator validations = new ArticleValidator();
+            ValidationResult result = validations.Validate(article);
+            if (result.IsValid)
+            {
                 var typesOfWritingId = _typesOfWritingService.TGetList().Where(x => x.Name == "Article").First().TypesOfWritingID;
                 var categoryID = _articleCategoryService.TGetList().Where(x => x.CategoryName == article.ArticleCategoryName && x.TypesOfWritingID == typesOfWritingId).First().ArticleCategoryID;
 
@@ -77,9 +73,18 @@ namespace CapstoneProject.Controllers
                     WriterName = User.Identity.Name,
                     TypeOfWritingName = "Article Added",
                     Date = DateTime.Now
-                }) ;
+                });
                 return RedirectToAction("Index");
-
+            }
+            else
+            {
+                foreach (var item in result.Errors)
+                {
+                    ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
+                }
+            }
+            ViewBag.categories = Categories();
+            return View();
         }
 
         public IActionResult DeleteArticle(int id)
@@ -101,6 +106,7 @@ namespace CapstoneProject.Controllers
             };
             return View(editDTO);
         }
+       
         [HttpPost]
         public IActionResult EditArticle(ArticleEditDTO dto)
         {
@@ -140,7 +146,21 @@ namespace CapstoneProject.Controllers
                     ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
                 }
             }
+            
             return View();
+        }
+
+        public List<string> Categories()
+        {
+            var id = _typesOfWritingService.TGetList().Where(x => x.Name == "Article").First().TypesOfWritingID; //article id'si alındı
+            var newsArticleCategories = _articleCategoryService.TGetList().Where(x => x.TypesOfWritingID == id); //article'ye ait kategoriler listelenir.
+            List<string> categories = new List<string>();
+            foreach (var item in newsArticleCategories)
+            {
+                if (!categories.Equals(item.CategoryName))
+                    categories.Add(item.CategoryName);
+            }
+           return categories;
         }
     }
 }

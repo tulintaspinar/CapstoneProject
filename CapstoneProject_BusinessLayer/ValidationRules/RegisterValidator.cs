@@ -12,13 +12,14 @@ namespace CapstoneProject_BusinessLayer.ValidationRules
     {
         public RegisterValidator() 
         {
-            RuleFor(x => x.Name).NotEmpty().WithMessage("The name field cannot be left empty!");
-            RuleFor(x => x.Surname).NotEmpty().WithMessage("The surname field cannot be left empty!");
-            RuleFor(x => x.Job).NotEmpty().WithMessage("The job field cannot be left empty!");
-            RuleFor(x => x.Age).NotEmpty().WithMessage("The age field cannot be left empty!");
-            RuleFor(x => x.UserName).NotEmpty().WithMessage("The username field cannot be left empty!");
-            RuleFor(x => x.Email).NotEmpty().WithMessage("The email field cannot be left empty!");
-            RuleFor(x => x.Password).NotEmpty().WithMessage("The password field cannot be left empty!");
+            RuleFor(x => x.Name).NotEmpty().WithMessage("Ad alanı boş geçilemezy!");
+            RuleFor(x => x.Surname).NotEmpty().WithMessage("Soyad alanı boş geçilemez!");
+            RuleFor(x => x.Phone).NotEmpty().WithMessage("Telefon numarası alanı boş geçilemez!");
+            RuleFor(x => x.Job).NotEmpty().WithMessage("Meslek alanı boş geçilemez!");
+            RuleFor(x => x.Age).NotEmpty().WithMessage("Yaş alanı boş geçilemez!");
+            RuleFor(x => x.UserName).NotEmpty().WithMessage("Kullanıcı adı alanı boş geçilemez!");
+            RuleFor(x => x.Email).NotEmpty().WithMessage("Mail alanı boş geçilemez!");
+            RuleFor(x => x.Password).NotEmpty().WithMessage("Şifre alanı boş geçilemez!");
         }
     }
 }

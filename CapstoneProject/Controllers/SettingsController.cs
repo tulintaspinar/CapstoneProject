@@ -44,7 +44,7 @@ namespace CapstoneProject.Controllers
             ViewBag.NewsArticleCount = newsArticles.Count;
             ViewBag.TotalCount = articles.Count + newsArticles.Count;
 
-            ViewBag.ActivityTimeline = _userActivityTimelineService.GetAllByUserName(user.UserName).OrderByDescending(x => x.Date);
+            ViewBag.ActivityTimeline = _userActivityTimelineService.GetAllByUserName(user.UserName).OrderByDescending(x => x.Date).TakeLast(5);
             ViewBag.TotalEmployeeCount = _userManager.Users.Count();
 
             return View(new UserDTO()
@@ -132,15 +132,15 @@ namespace CapstoneProject.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> DeleteAccount(string lblcheck)
+        public async Task<IActionResult> DeleteAccount(string accountActivation)
         {
-            if (lblcheck != null)
+            if (accountActivation != null)
             {
                 var user = await _userManager.FindByNameAsync(User.Identity.Name);
-                var result = await _userManager.DeleteAsync(new AppUser() { Id = user.Id });
+                var result = await _userManager.DeleteAsync(user);
                 if (result.Succeeded)
                 {
-                    return RedirectToAction("Account");
+                    return RedirectToAction("Index","Login");
                 }
             }
             return RedirectToAction("Setting");

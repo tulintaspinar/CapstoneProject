@@ -13,15 +13,16 @@
                     <div class="mb-3 row">
                         <label class="col-md-2 col-form-label">Title</label>
                         <div class="col-md-10">
-                            <input asp-for="Title" class="form-control" type="text" placeholder="Vuexy">
+                            <input asp-for="Title" class="form-control" type="text" placeholder="Enter title">
+                            <span class="text-danger" asp-validation-for="Title"></span>
                         </div>
                     </div>
                     <div class="mb-3 row">
                         <label class="col-md-2 col-form-label">Description</label>
                         <div class="col-md-10">
                             <textarea asp-for="Description" class="form-control" rows="10" cols="6" value="Description"></textarea>
+                            <span class="text-danger" asp-validation-for="Description"></span>
                         </div>
-                        <span class="text-danger" asp-validation-for="Description"></span>
                     </div>
                     <div class="mb-3 row">
                         <label class="col-md-2 col-form-label">Category</label>
@@ -40,7 +41,7 @@
                         </div>
                     </div>
                     <div class="mb-3 row">
-                        <button class="btn btn-outline-info">ADD NEW ARTİCLE</button>
+                        <button class="btn btn-outline-info">ADD</button>
                     </div>
                 </div>
             </div>

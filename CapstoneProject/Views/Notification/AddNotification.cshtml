@@ -13,13 +13,15 @@
                     <form method="post">
                         <div class="input-group">
                             <span class="input-group-text" id="basic-addon11">Title</span>
-                            <input type="text" class="form-control" placeholder="Title" asp-for="Title">
+                            <input type="text" class="form-control" placeholder="Title" asp-for="Title">                           
                         </div>
+                        <span class="text-danger" asp-validation-for="Title"></span>
                         <br />
                         <div class="input-group">
                             <span class="input-group-text" id="basic-addon11">Message</span>
-                            <textarea type="text" class="form-control" placeholder="Description" rows="5" cols="5" asp-for="Description"></textarea>
+                            <textarea type="text" class="form-control" placeholder="Description" rows="7" cols="6" asp-for="Description"></textarea>                           
                         </div>
+                        <span class="text-danger" asp-validation-for="Description"></span>
                         <br />
                         <div class="input-group">
                             <button type="submit" class="btn btn-primary">ADD</button>

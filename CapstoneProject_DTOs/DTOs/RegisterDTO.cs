@@ -9,24 +9,13 @@ namespace CapstoneProject_DTOs.DTOs
 {
     public class RegisterDTO
     {
-        [Required]
         public string Name { get; set; }
-
-        [Required]
         public string Surname { get; set; }
-
-        [Required]
         public string UserName { get; set; }
-
-        [Required]
         public string Email { get; set; }
-
-        [Required]
         public string Password { get; set; }
-
-        [Required]
         public int Age { get; set; }
-
         public string Job { get; set; }
+        public string Phone { get; set; }
     }
 }

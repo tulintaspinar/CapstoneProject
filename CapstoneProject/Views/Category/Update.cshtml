@@ -24,9 +24,11 @@
                         <div class="btn-group">
                             <label for="html5-text-input" class="col-md-2 col-form-label">Types Of Writing</label>
                             <select id="drpEmpList" class="form-control" asp-for="TypesOfWritingName" asp-items="(new SelectList(ViewBag.typesOfWritingAll))">
-                                <option value="">@* --Choose--*@</option>
+                                <option value=""> --Choose--</option>
                             </select>
+                            
                         </div>
+                        <span class="text-danger" asp-validation-for="TypesOfWritingName"></span>
                     </div>
                     <div class="mb-3 row">
                         <button type="submit" class="btn btn-outline-info">UPDATE</button>

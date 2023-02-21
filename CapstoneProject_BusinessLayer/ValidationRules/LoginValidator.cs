@@ -13,7 +13,7 @@ namespace CapstoneProject_BusinessLayer.ValidationRules
         public LoginValidator()
         {
             RuleFor(x => x.UserName).NotEmpty().WithMessage("Kullanıcı adı boş geçilemez!");
-            RuleFor(x => x.PasswordHash).NotEmpty().WithMessage("Kullanıcı adı boş geçilemez!");
+            RuleFor(x => x.PasswordHash).NotEmpty().WithMessage("Kullanıcı şifresi boş geçilemez!");
         }
     }
 }

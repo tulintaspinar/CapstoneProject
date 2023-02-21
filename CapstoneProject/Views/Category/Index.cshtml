@@ -4,15 +4,6 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
     int count = 0;
 }
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-<script>
-    var msg = '@TempData["message"]';
-    if (msg.length)
-    {
-        swal("Opps!", TempData["message"], "error");
-    }
-</script>
-
 <div class="container-xxl flex-grow-1 container-p-y">
     <h4 class="fw-bold py-3 mb-4">
         <span class="text-muted fw-light">Category /</span> All Category
